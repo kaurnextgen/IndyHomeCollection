@@ -401,7 +401,8 @@ const DEFAULT_SETTINGS: AdminSettingsData = {
   announcementLinkUrl: '#contact',
   maintenanceMode: false,
   leadAutoRouting: true,
-  superAdminPin: '7777',
+  superAdminPin: '948261',
+  superAdminPassword: 'Indy#Luxury@Estate!2026',
   currency: 'USD ($)',
   defaultCommissionRate: 3.0,
 };

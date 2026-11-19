@@ -47,6 +47,10 @@ import {
   Sliders,
   Award,
   Zap,
+  EyeOff,
+  KeyRound,
+  ShieldAlert,
+  Copy,
 } from 'lucide-react';
 import {
   LeadItem,
@@ -156,8 +160,9 @@ export const SuperAdminPortal: React.FC<SuperAdminPortalProps> = ({
     bio: '',
   });
 
-  // PIN settings form
-  const [newSuperPin, setNewSuperPin] = useState(settings.superAdminPin || '7777');
+  // PIN & Password settings form
+  const [newSuperPin, setNewSuperPin] = useState(settings.superAdminPin || '948261');
+  const [newSuperPassword, setNewSuperPassword] = useState(settings.superAdminPassword || 'Indy#Luxury@Estate!2026');
   const [saveSuccessMsg, setSaveSuccessMsg] = useState('');
 
   // Refresh data from adminStore
@@ -180,10 +185,14 @@ export const SuperAdminPortal: React.FC<SuperAdminPortalProps> = ({
   // Login Handler
   const handlePinSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const input = pinInput.trim().toLowerCase();
-    const currentSuperPin = settings.superAdminPin || '7777';
+    const input = pinInput.trim();
+    const currentSuperPin = settings.superAdminPin || '948261';
+    const currentSuperPass = settings.superAdminPassword || 'Indy#Luxury@Estate!2026';
 
-    if (input === currentSuperPin || input === 'superadmin' || input === '7777') {
+    if (
+      input === currentSuperPin ||
+      input === currentSuperPass
+    ) {
       adminStore.setSuperAdminAuthenticated(true);
       setIsSuperAdmin(true);
       setIsAuthenticated(true);
@@ -193,9 +202,9 @@ export const SuperAdminPortal: React.FC<SuperAdminPortalProps> = ({
         action: 'Super Admin Login',
         user: 'Super Admin',
         category: 'auth',
-        details: 'Root Super Admin authenticated via master PIN.',
+        details: 'Root Super Admin authenticated via secret credentials.',
       });
-    } else if (input === '1234' || input === '0000' || input === 'admin') {
+    } else if (input === '1234') {
       adminStore.setAuthenticated(true);
       adminStore.setSuperAdminAuthenticated(false);
       setIsSuperAdmin(false);
@@ -211,13 +220,6 @@ export const SuperAdminPortal: React.FC<SuperAdminPortalProps> = ({
     } else {
       setPinError(true);
     }
-  };
-
-  const handleQuickSuperAccess = () => {
-    adminStore.setSuperAdminAuthenticated(true);
-    setIsSuperAdmin(true);
-    setIsAuthenticated(true);
-    setPinError(false);
   };
 
   const handleQuickAgentAccess = () => {
@@ -422,21 +424,27 @@ export const SuperAdminPortal: React.FC<SuperAdminPortalProps> = ({
     setTimeout(() => setSaveSuccessMsg(''), 4000);
   };
 
-  // Save Super Admin PIN
-  const handleSaveSuperPin = (e: React.FormEvent) => {
+  // Save Super Admin PIN & Password
+  const handleSaveSuperCredentials = (e: React.FormEvent) => {
     e.preventDefault();
-    if (newSuperPin.length >= 4) {
-      const updated = { ...settings, superAdminPin: newSuperPin };
+    if (newSuperPin.length >= 6 && newSuperPassword.length >= 8) {
+      const updated = {
+        ...settings,
+        superAdminPin: newSuperPin,
+        superAdminPassword: newSuperPassword,
+      };
       setSettings(updated);
       adminStore.saveSettings(updated);
       adminStore.addAuditLog({
-        action: 'Master Super Admin PIN Changed',
+        action: 'Master Super Admin Credentials Changed',
         user: 'Super Admin',
         category: 'auth',
-        details: 'Super Admin master security credentials updated.',
+        details: 'Super Admin master security PIN and password updated.',
       });
-      setSaveSuccessMsg('Super Admin Master PIN updated successfully!');
+      setSaveSuccessMsg('Super Admin Master Security credentials updated successfully!');
       setTimeout(() => setSaveSuccessMsg(''), 4000);
+    } else {
+      alert('PIN must be at least 6 digits and password at least 8 characters.');
     }
   };
 
@@ -474,22 +482,21 @@ export const SuperAdminPortal: React.FC<SuperAdminPortalProps> = ({
           <form onSubmit={handlePinSubmit} className="space-y-4">
             <div>
               <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                Enter Master Security PIN
+                Enter Master Security PIN or Password
               </label>
               <input
                 type="password"
-                maxLength={8}
                 value={pinInput}
                 onChange={(e) => {
                   setPinInput(e.target.value);
                   setPinError(false);
                 }}
-                placeholder="••••"
-                className="w-full text-center tracking-[0.6em] text-2xl py-3 rounded-2xl bg-[#070A10] border border-[#D4AF37]/40 text-amber-300 focus:outline-none focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/25 transition-all font-mono"
+                placeholder="••••••••••••"
+                className="w-full text-center tracking-[0.25em] text-xl py-3 rounded-2xl bg-[#070A10] border border-[#D4AF37]/40 text-amber-300 focus:outline-none focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/25 transition-all font-mono"
               />
               {pinError && (
-                <p className="text-xs text-rose-400 mt-2 flex items-center justify-center gap-1">
-                  <AlertCircle className="w-3.5 h-3.5" /> Invalid PIN. Use 7777 (Super Admin) or 1234 (Agent).
+                <p className="text-xs text-rose-400 mt-2 flex items-center justify-center gap-1 font-medium">
+                  <AlertCircle className="w-3.5 h-3.5" /> Access Denied: Invalid Security Credentials
                 </p>
               )}
             </div>
@@ -499,35 +506,16 @@ export const SuperAdminPortal: React.FC<SuperAdminPortalProps> = ({
               className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#E8CB7E] to-[#B38936] text-slate-950 font-bold text-xs tracking-widest uppercase shadow-[0_4px_20px_rgba(212,175,55,0.3)] hover:brightness-105 active:scale-98 transition-all cursor-pointer flex items-center justify-center gap-2"
             >
               <Unlock className="w-4 h-4 text-slate-950" />
-              <span>Access Super Admin Console</span>
+              <span>Authenticate & Enter Console</span>
             </button>
           </form>
 
-          {/* Quick Demo Shortcuts */}
-          <div className="pt-4 border-t border-slate-800/80 space-y-2.5">
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              <button
-                onClick={handleQuickSuperAccess}
-                className="px-3 py-2 rounded-xl bg-amber-500/15 border border-[#D4AF37]/50 text-amber-300 hover:bg-amber-500/25 transition-colors cursor-pointer flex items-center justify-center gap-1.5 font-semibold"
-                title="Log in with full Root permissions"
-              >
-                <Crown className="w-3.5 h-3.5 text-[#D4AF37]" />
-                <span>Super Admin (7777)</span>
-              </button>
-              <button
-                onClick={handleQuickAgentAccess}
-                className="px-3 py-2 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-300 hover:bg-slate-700 transition-colors cursor-pointer flex items-center justify-center gap-1.5 font-medium"
-                title="Log in with associate agent view"
-              >
-                <Users className="w-3.5 h-3.5 text-slate-400" />
-                <span>Agent (1234)</span>
-              </button>
-            </div>
-
+          {/* Secure Return Navigation */}
+          <div className="pt-3 border-t border-slate-800/80 space-y-2">
             <div>
               <button
                 onClick={onBackToWebsite}
-                className="text-xs text-slate-400 hover:text-white transition-colors cursor-pointer flex items-center justify-center gap-1 mx-auto mt-2"
+                className="text-xs text-slate-400 hover:text-white transition-colors cursor-pointer flex items-center justify-center gap-1 mx-auto"
               >
                 ← Return to Public Website
               </button>
@@ -1660,33 +1648,51 @@ export const SuperAdminPortal: React.FC<SuperAdminPortalProps> = ({
                 </div>
               </div>
 
-              {/* Master Security PIN Card */}
+              {/* Master Security Credentials Card */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <form onSubmit={handleSaveSuperPin} className="p-6 rounded-3xl bg-[#0E1422] border border-[#D4AF37]/35 shadow-luxury-glow space-y-4">
-                  <h3 className="text-base font-bold text-white font-luxury-serif flex items-center gap-2">
-                    <Lock className="w-4 h-4 text-[#D4AF37]" />
-                    <span>Master Super Admin PIN</span>
-                  </h3>
+                <form onSubmit={handleSaveSuperCredentials} className="p-6 rounded-3xl bg-[#0E1422] border border-[#D4AF37]/35 shadow-luxury-glow space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-base font-bold text-white font-luxury-serif flex items-center gap-2">
+                      <Lock className="w-4 h-4 text-[#D4AF37]" />
+                      <span>Master Super Admin Credentials</span>
+                    </h3>
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase">
+                      Root Protection
+                    </span>
+                  </div>
                   <p className="text-xs text-slate-400">
-                    This PIN grants root access to all financial KPIs, agent rosters, and database backups.
+                    Strong, unguessable credentials for the root administrator. Either the Master PIN or Password can be entered to log in.
                   </p>
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                      New Super Admin PIN (Minimum 4 digits)
+                    <label className="block text-xs font-semibold text-slate-300 mb-1.5 flex items-center justify-between">
+                      <span>Secret Master PIN (6 Digits)</span>
+                      <span className="text-[10px] text-amber-300 font-mono">Current: {settings.superAdminPin}</span>
                     </label>
                     <input
-                      type="password"
-                      maxLength={8}
+                      type="text"
+                      maxLength={10}
                       value={newSuperPin}
                       onChange={(e) => setNewSuperPin(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#131A29] border border-slate-700 text-amber-300 font-mono text-lg tracking-widest focus:outline-none focus:border-[#D4AF37]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#131A29] border border-slate-700 text-amber-300 font-mono text-base tracking-widest focus:outline-none focus:border-[#D4AF37]"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-300 mb-1.5 flex items-center justify-between">
+                      <span>Unguessable Master Password</span>
+                      <span className="text-[10px] text-slate-400 font-mono">Special chars + mixed case</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={newSuperPassword}
+                      onChange={(e) => setNewSuperPassword(e.target.value)}
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#131A29] border border-slate-700 text-amber-300 font-mono text-sm tracking-wider focus:outline-none focus:border-[#D4AF37]"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-2.5 rounded-xl bg-slate-900 border border-[#D4AF37]/40 text-amber-300 hover:text-white hover:bg-slate-850 text-xs font-bold uppercase tracking-wider cursor-pointer"
+                    className="w-full py-2.5 rounded-xl bg-gold-metallic text-slate-950 text-xs font-bold uppercase tracking-wider cursor-pointer shadow-luxury-glow hover:opacity-95"
                   >
-                    Update Master PIN
+                    Save & Lock Credentials
                   </button>
                 </form>
 
@@ -2349,3 +2355,4 @@ export const SuperAdminPortal: React.FC<SuperAdminPortalProps> = ({
     </div>
   );
 };
+

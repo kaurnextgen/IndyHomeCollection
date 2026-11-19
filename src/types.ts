@@ -113,6 +113,7 @@ export interface AdminSettingsData {
   maintenanceMode: boolean;
   leadAutoRouting: boolean;
   superAdminPin: string;
+  superAdminPassword: string;
   currency: string;
   defaultCommissionRate: number;
 }

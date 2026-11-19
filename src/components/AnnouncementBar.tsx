@@ -52,3 +52,4 @@ export const AnnouncementBar: React.FC = () => {
     </aside>
   );
 };
+
