@@ -1,7 +1,8 @@
-import React, { useState, useId } from 'react';
-import { Phone, Mail, MapPin, Calendar, CheckCircle2, MessageSquare, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect, useId } from 'react';
+import { Phone, Mail, MapPin, Calendar, CheckCircle2, MessageSquare, ArrowRight, ShieldAlert, AlertTriangle } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { adminStore } from '../data/adminStore';
+import { checkSubmissionEligibility, recordFormSubmission, MAX_DAILY_SUBMISSIONS } from '../utils/rateLimiter';
 
 interface ContactSectionProps {
   onCallClick: () => void;
@@ -31,10 +32,34 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   const [preferredMethod, setPreferredMethod] = useState<'phone' | 'text' | 'email'>('phone');
   const [notes, setNotes] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [remainingQuota, setRemainingQuota] = useState(MAX_DAILY_SUBMISSIONS);
+  const [isBanned, setIsBanned] = useState(false);
+  const [banHours, setBanHours] = useState(24);
+  const [banErrorMessage, setBanErrorMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Check IP rate limit on mount
+  useEffect(() => {
+    checkSubmissionEligibility('contact').then((res) => {
+      setIsBanned(res.isBanned);
+      setRemainingQuota(res.remaining);
+      if (res.hoursRemaining) setBanHours(res.hoursRemaining);
+    });
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !phone) return;
+
+    // Check & record submission with 2-per-24h IP rate limiter
+    const rateCheck = await recordFormSubmission('contact');
+    if (!rateCheck.success) {
+      setIsBanned(true);
+      setBanHours(rateCheck.hoursRemaining || 24);
+      setBanErrorMessage(rateCheck.errorMessage || 'Submission limit exceeded. This IP has been restricted for 24 hours.');
+      return;
+    }
+
+    setRemainingQuota(rateCheck.remaining);
 
     adminStore.addLead({
       name,
@@ -141,16 +166,60 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           {/* Right Column: Interactive Consultation Booking Form */}
           <div className="lg:col-span-7 bg-[#0E1422]/95 p-6 sm:p-10 rounded-3xl border border-[#D4AF37]/30 shadow-luxury-glow text-white">
             
-            {!submitted ? (
-              <form onSubmit={handleSubmit} className="space-y-5 font-sans-clean">
-                <div>
+            {isBanned ? (
+              <div className="py-8 px-6 rounded-2xl bg-rose-950/40 border border-rose-500/40 text-center space-y-5 animate-in fade-in">
+                <div className="w-14 h-14 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center mx-auto border border-rose-500/40 shadow-inner">
+                  <ShieldAlert className="w-7 h-7" />
+                </div>
+                <div className="space-y-2">
+                  <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                    24-Hour Security Restriction Active
+                  </span>
                   <h3 className="font-serif-luxury text-xl sm:text-2xl font-bold text-white">
-                    {t.contact.formTitle}
+                    ਇਹ IP ਐਡਰੈੱਸ 24 ਘੰਟਿਆਂ ਲਈ ਬੈਨ ਹੈ
                   </h3>
-                  <p className="text-xs text-slate-300 mt-1 font-light">
-                    {t.contact.formSubtitle}
+                  <p className="text-sm font-medium text-amber-300">
+                    ਇੱਕ ਦਿਨ (24 ਘੰਟੇ) ਵਿੱਚ ਸਿਰਫ਼ 2 ਵਾਰ ਫਾਰਮ ਭਰਿਆ ਜਾ ਸਕਦਾ ਹੈ।
+                  </p>
+                  <p className="text-xs text-slate-300 max-w-md mx-auto leading-relaxed pt-1">
+                    Your IP address has reached the maximum threshold of 2 submissions per 24 hours. To safeguard our client network, access is paused for approximately <strong className="text-white font-bold">{banHours} more hours</strong>.
                   </p>
                 </div>
+                <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <button
+                    onClick={onCallClick}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 text-sm font-bold shadow-lg hover:brightness-110 transition-all cursor-pointer"
+                  >
+                    <Phone className="w-4 h-4 text-slate-950" />
+                    <span>Call Directly: (317) 408-9532</span>
+                  </button>
+                </div>
+              </div>
+            ) : !submitted ? (
+              <form onSubmit={handleSubmit} className="space-y-5 font-sans-clean">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                  <div>
+                    <h3 className="font-serif-luxury text-xl sm:text-2xl font-bold text-white">
+                      {t.contact.formTitle}
+                    </h3>
+                    <p className="text-xs text-slate-300 mt-1 font-light">
+                      {t.contact.formSubtitle}
+                    </p>
+                  </div>
+                  <div className="shrink-0">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                      Quota: {remainingQuota}/2 today
+                    </span>
+                  </div>
+                </div>
+
+                {banErrorMessage && (
+                  <div className="p-3.5 rounded-xl bg-rose-950/60 border border-rose-500/50 text-rose-200 text-xs flex items-start gap-2.5">
+                    <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                    <span>{banErrorMessage}</span>
+                  </div>
+                )}
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>

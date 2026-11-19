@@ -1,7 +1,8 @@
-import React, { useState, useId } from 'react';
-import { Calendar, CheckCircle2, X, Clock, ArrowRight, Phone } from 'lucide-react';
+import React, { useState, useEffect, useId } from 'react';
+import { Calendar, CheckCircle2, X, Clock, ArrowRight, Phone, ShieldAlert, AlertTriangle } from 'lucide-react';
 import { LuxuryLogo } from './LuxuryLogo';
 import { adminStore } from '../data/adminStore';
+import { checkSubmissionEligibility, recordFormSubmission, MAX_DAILY_SUBMISSIONS } from '../utils/rateLimiter';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -28,13 +29,37 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   const [preferredDate, setPreferredDate] = useState('');
   const [preferredTime, setPreferredTime] = useState('Morning (9 AM - 12 PM)');
   const [submitted, setSubmitted] = useState(false);
+  const [isBanned, setIsBanned] = useState(false);
+  const [banHours, setBanHours] = useState(24);
+  const [banErrorMessage, setBanErrorMessage] = useState('');
+  const [remainingQuota, setRemainingQuota] = useState(MAX_DAILY_SUBMISSIONS);
+
+  useEffect(() => {
+    if (isOpen) {
+      checkSubmissionEligibility('booking').then((res) => {
+        setIsBanned(res.isBanned);
+        setRemainingQuota(res.remaining);
+        if (res.hoursRemaining) setBanHours(res.hoursRemaining);
+      });
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !phone) return;
     
+    const rateCheck = await recordFormSubmission('booking');
+    if (!rateCheck.success) {
+      setIsBanned(true);
+      setBanHours(rateCheck.hoursRemaining || 24);
+      setBanErrorMessage(rateCheck.errorMessage || 'Submission limit exceeded. This IP has been restricted for 24 hours.');
+      return;
+    }
+
+    setRemainingQuota(rateCheck.remaining);
+
     adminStore.addLead({
       name,
       phone,
@@ -63,7 +88,39 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           <X className="w-5 h-5" />
         </button>
 
-        {!submitted ? (
+        {isBanned ? (
+          <div className="py-6 px-4 rounded-2xl bg-rose-950/40 border border-rose-500/40 text-center space-y-4">
+            <div className="w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center mx-auto border border-rose-500/30">
+              <ShieldAlert className="w-6 h-6" />
+            </div>
+            <div className="space-y-1.5">
+              <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                24-Hour Ban Active
+              </span>
+              <h3 className="font-serif-luxury text-xl font-bold text-white">
+                ਇਹ IP 24 ਘੰਟਿਆਂ ਲਈ ਬੈਨ ਹੈ
+              </h3>
+              <p className="text-xs font-semibold text-amber-300">
+                1 ਦਿਨ ਵਿੱਚ ਸਿਰਫ਼ 2 ਵਾਰ ਫਾਰਮ ਭਰਿਆ ਜਾ ਸਕਦਾ ਹੈ।
+              </p>
+              <p className="text-xs text-slate-300 max-w-sm mx-auto leading-relaxed">
+                Maximum 2 daily submissions reached from your network. Lockout expires in ~<strong className="text-white font-bold">{banHours} hours</strong>. For urgent assistance:
+              </p>
+            </div>
+            <div className="pt-2">
+              <button
+                onClick={() => {
+                  onCallClick();
+                  onClose();
+                }}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 text-xs font-bold shadow hover:brightness-110 cursor-pointer"
+              >
+                <Phone className="w-3.5 h-3.5" />
+                <span>Call Directly: (317) 408-9532</span>
+              </button>
+            </div>
+          </div>
+        ) : !submitted ? (
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="text-center pb-2 border-b border-slate-800 flex flex-col items-center">
               <LuxuryLogo variant="markOnly" size={44} />
@@ -74,10 +131,22 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               <h3 className="font-luxury-serif text-2xl sm:text-3xl font-normal text-white mt-1">
                 Book a One-on-One Session
               </h3>
-              <p className="text-xs text-slate-300 font-body-read mt-0.5">
-                Topic: <strong className="text-amber-300 font-semibold">{serviceTitle}</strong>
-              </p>
+              <div className="flex items-center gap-2 mt-1">
+                <p className="text-xs text-slate-300 font-body-read">
+                  Topic: <strong className="text-amber-300 font-semibold">{serviceTitle}</strong>
+                </p>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20 font-medium">
+                  {remainingQuota}/2 left today
+                </span>
+              </div>
             </div>
+
+            {banErrorMessage && (
+              <div className="p-3 rounded-xl bg-rose-950/60 border border-rose-500/40 text-rose-200 text-xs flex items-start gap-2">
+                <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                <span>{banErrorMessage}</span>
+              </div>
+            )}
 
             <div className="space-y-3.5">
               <div>

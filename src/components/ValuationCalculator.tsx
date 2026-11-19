@@ -1,7 +1,8 @@
-import React, { useState, useId } from 'react';
-import { Calculator, CheckCircle2, ArrowRight, ShieldCheck, Phone } from 'lucide-react';
+import React, { useState, useEffect, useId } from 'react';
+import { Calculator, CheckCircle2, ArrowRight, ShieldCheck, Phone, ShieldAlert, AlertTriangle } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { adminStore } from '../data/adminStore';
+import { checkSubmissionEligibility, recordFormSubmission, MAX_DAILY_SUBMISSIONS } from '../utils/rateLimiter';
 
 interface ValuationCalculatorProps {
   onCallClick: () => void;
@@ -32,6 +33,18 @@ export const ValuationCalculator: React.FC<ValuationCalculatorProps> = ({ onCall
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isBanned, setIsBanned] = useState(false);
+  const [banHours, setBanHours] = useState(24);
+  const [banErrorMessage, setBanErrorMessage] = useState('');
+  const [remainingQuota, setRemainingQuota] = useState(MAX_DAILY_SUBMISSIONS);
+
+  useEffect(() => {
+    checkSubmissionEligibility('valuation').then((res) => {
+      setIsBanned(res.isBanned);
+      setRemainingQuota(res.remaining);
+      if (res.hoursRemaining) setBanHours(res.hoursRemaining);
+    });
+  }, []);
 
   // Indiana City Median Per-Sq-Ft Baselines
   const cityMultipliers: Record<string, number> = {
@@ -65,9 +78,19 @@ export const ValuationCalculator: React.FC<ValuationCalculatorProps> = ({ onCall
   const lowRange = Math.round((calculatedEstimate * 0.95) / 1000) * 1000;
   const highRange = Math.round((calculatedEstimate * 1.06) / 1000) * 1000;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !phone) return;
+
+    const rateCheck = await recordFormSubmission('valuation');
+    if (!rateCheck.success) {
+      setIsBanned(true);
+      setBanHours(rateCheck.hoursRemaining || 24);
+      setBanErrorMessage(rateCheck.errorMessage || 'Submission limit exceeded. This IP has been restricted for 24 hours.');
+      return;
+    }
+
+    setRemainingQuota(rateCheck.remaining);
 
     adminStore.addLead({
       name,
@@ -273,16 +296,57 @@ export const ValuationCalculator: React.FC<ValuationCalculatorProps> = ({ onCall
             </div>
 
             {/* Free Official Report Request Form */}
-            {!submitted ? (
-              <form onSubmit={handleSubmit} className="space-y-4 font-sans-clean">
-                <div className="space-y-1">
+            {isBanned ? (
+              <div className="p-6 rounded-2xl bg-rose-950/40 border border-rose-500/40 text-center space-y-4">
+                <div className="w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center mx-auto border border-rose-500/30">
+                  <ShieldAlert className="w-6 h-6" />
+                </div>
+                <div className="space-y-1.5">
+                  <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                    24-Hour Restriction Active
+                  </span>
                   <h3 className="font-serif-luxury text-lg font-bold text-white">
-                    {t.valuation.cmaTitle}
+                    ਇਹ IP ਐਡਰੈੱਸ 24 ਘੰਟਿਆਂ ਲਈ ਬੈਨ ਹੈ
                   </h3>
-                  <p className="text-xs text-slate-300 leading-relaxed font-light">
-                    Receive a full neighborhood breakdown including off-market comparables, buyer pool analysis, and home prep tips.
+                  <p className="text-xs font-semibold text-amber-300">
+                    1 ਦਿਨ ਵਿੱਚ ਸਿਰਫ਼ 2 ਵਾਰ ਫਾਰਮ ਭਰ ਸਕਦੇ ਹੋ।
+                  </p>
+                  <p className="text-xs text-slate-300 leading-relaxed max-w-sm mx-auto">
+                    Daily limit reached from your IP. Lockout active for approximately <strong className="text-white font-bold">{banHours} more hours</strong>.
                   </p>
                 </div>
+                <div className="pt-1">
+                  <button
+                    onClick={onCallClick}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 text-xs font-bold shadow hover:brightness-110 cursor-pointer"
+                  >
+                    <Phone className="w-3.5 h-3.5" />
+                    <span>Call Directly: (317) 408-9532</span>
+                  </button>
+                </div>
+              </div>
+            ) : !submitted ? (
+              <form onSubmit={handleSubmit} className="space-y-4 font-sans-clean">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="space-y-1">
+                    <h3 className="font-serif-luxury text-lg font-bold text-white">
+                      {t.valuation.cmaTitle}
+                    </h3>
+                    <p className="text-xs text-slate-300 leading-relaxed font-light">
+                      Receive a full neighborhood breakdown including off-market comparables, buyer pool analysis, and home prep tips.
+                    </p>
+                  </div>
+                  <span className="shrink-0 text-[10px] px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20 font-medium">
+                    {remainingQuota}/2 today
+                  </span>
+                </div>
+
+                {banErrorMessage && (
+                  <div className="p-3 rounded-xl bg-rose-950/60 border border-rose-500/40 text-rose-200 text-xs flex items-start gap-2">
+                    <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                    <span>{banErrorMessage}</span>
+                  </div>
+                )}
 
                 <div className="space-y-3">
                   <div>

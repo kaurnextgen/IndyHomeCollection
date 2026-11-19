@@ -65,6 +65,7 @@ import {
 } from '../types';
 import { adminStore } from '../data/adminStore';
 import { LuxuryLogo } from './LuxuryLogo';
+import { getBannedClients, unbanClient, clearAllBans, BannedClientRecord } from '../utils/rateLimiter';
 
 interface SuperAdminPortalProps {
   onBackToWebsite: () => void;
@@ -100,6 +101,7 @@ export const SuperAdminPortal: React.FC<SuperAdminPortalProps> = ({
   const [reviews, setReviews] = useState<ReviewItem[]>([]);
   const [team, setTeam] = useState<TeamMember[]>([]);
   const [auditLogs, setAuditLogs] = useState<AuditLogEntry[]>([]);
+  const [bannedClients, setBannedClients] = useState<BannedClientRecord[]>([]);
   const [settings, setSettings] = useState<AdminSettingsData>(adminStore.getSettings());
 
   // Search & Filters
@@ -172,6 +174,7 @@ export const SuperAdminPortal: React.FC<SuperAdminPortalProps> = ({
     setReviews(adminStore.getReviews());
     setTeam(adminStore.getTeam());
     setAuditLogs(adminStore.getAuditLogs());
+    setBannedClients(getBannedClients());
     setSettings(adminStore.getSettings());
   };
 
@@ -448,6 +451,26 @@ export const SuperAdminPortal: React.FC<SuperAdminPortalProps> = ({
     }
   };
 
+  // Unban Client IP
+  const handleUnbanIp = (target: string) => {
+    unbanClient(target);
+    setBannedClients(getBannedClients());
+    refreshData();
+    setSaveSuccessMsg(`IP ${target} ban lifted successfully.`);
+    setTimeout(() => setSaveSuccessMsg(''), 4000);
+  };
+
+  // Clear all banned IPs
+  const handleClearAllBans = () => {
+    if (confirm('Are you sure you want to lift all 24-hour IP restrictions and reset submission counts?')) {
+      clearAllBans();
+      setBannedClients([]);
+      refreshData();
+      setSaveSuccessMsg('All IP restrictions cleared.');
+      setTimeout(() => setSaveSuccessMsg(''), 4000);
+    }
+  };
+
   // --------------------------------------------------------------------------
   // LOGIN SCREEN
   // --------------------------------------------------------------------------
@@ -460,7 +483,7 @@ export const SuperAdminPortal: React.FC<SuperAdminPortalProps> = ({
         <div className="max-w-md w-full bg-[#0D1322]/95 border border-[#D4AF37]/40 rounded-3xl p-8 sm:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.8)] backdrop-blur-2xl relative z-10 text-center space-y-6">
           <div className="flex flex-col items-center">
             <div className="relative">
-              <LuxuryLogo variant="markOnly" size={68} isDark={true} />
+              <LuxuryLogo variant="markOnly" size={68} />
               <div className="absolute -top-1 -right-1 p-1 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B38936] text-slate-950 shadow-md">
                 <Crown className="w-3.5 h-3.5" />
               </div>
@@ -541,7 +564,7 @@ export const SuperAdminPortal: React.FC<SuperAdminPortalProps> = ({
         
         {/* Left: Brand Crest & Super Admin Badge */}
         <div className="flex items-center gap-3">
-          <LuxuryLogo variant="markOnly" size={40} isDark={true} />
+          <LuxuryLogo variant="markOnly" size={40} />
           <div>
             <div className="flex items-center gap-2">
               <span className="font-luxury-display text-base sm:text-lg font-normal tracking-[0.16em] uppercase text-white">
@@ -1119,7 +1142,7 @@ export const SuperAdminPortal: React.FC<SuperAdminPortalProps> = ({
                           <div className="flex items-center gap-2">
                             <h3 className="text-base font-bold text-white">{member.name}</h3>
                             {member.role === 'Super Admin' && (
-                              <Crown className="w-4 h-4 text-[#D4AF37]" title="Root Super Admin" />
+                              <Crown className="w-4 h-4 text-[#D4AF37]" aria-label="Root Super Admin" />
                             )}
                           </div>
                           <span className="inline-block mt-0.5 px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30">
@@ -1719,6 +1742,97 @@ export const SuperAdminPortal: React.FC<SuperAdminPortalProps> = ({
                     </button>
                   </div>
                 </div>
+              </div>
+
+              {/* IP Rate Limiting Firewall & 24-Hour Banned Clients */}
+              <div className="rounded-3xl bg-[#0E1422] border border-[#D4AF37]/30 overflow-hidden shadow-luxury-glow">
+                <div className="p-5 bg-[#121A2B] border-b border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-2.5">
+                    <ShieldAlert className="w-5 h-5 text-rose-400" />
+                    <div>
+                      <h3 className="font-bold text-sm text-white flex items-center gap-2">
+                        <span>IP Firewall & 24-Hour Banned Clients</span>
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                          bannedClients.length > 0
+                            ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
+                            : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                        }`}>
+                          {bannedClients.length} Restricted
+                        </span>
+                      </h3>
+                      <p className="text-xs text-slate-400 mt-0.5">
+                        Enforces maximum 2 submissions per 24 hours. Extra attempts trigger an automated 24-hour lockout.
+                      </p>
+                    </div>
+                  </div>
+
+                  {bannedClients.length > 0 && (
+                    <button
+                      onClick={handleClearAllBans}
+                      className="px-3 py-1.5 rounded-xl bg-rose-950/60 border border-rose-700/60 text-rose-300 hover:bg-rose-900/60 text-xs font-semibold cursor-pointer shrink-0"
+                    >
+                      Purge All Active Bans
+                    </button>
+                  )}
+                </div>
+
+                {bannedClients.length === 0 ? (
+                  <div className="p-8 text-center space-y-2">
+                    <CheckCircle2 className="w-8 h-8 text-emerald-400 mx-auto" />
+                    <p className="text-sm font-semibold text-slate-200">No Active IP Bans</p>
+                    <p className="text-xs text-slate-400 max-w-md mx-auto">
+                      All central Indiana client requests are operating normally within the 2-inquiries/24h firewall quota.
+                    </p>
+                  </div>
+                ) : (
+                  <div className="divide-y divide-slate-800 overflow-x-auto">
+                    <table className="w-full text-left text-xs text-slate-300">
+                      <thead className="bg-[#0A0E18] text-slate-400 uppercase tracking-wider text-[10px]">
+                        <tr>
+                          <th className="px-4 py-3">Client IP Address</th>
+                          <th className="px-4 py-3">Locked Reason</th>
+                          <th className="px-4 py-3">Banned At</th>
+                          <th className="px-4 py-3">Hours Remaining</th>
+                          <th className="px-4 py-3 text-right">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-800/60">
+                        {bannedClients.map((ban, idx) => {
+                          const now = Date.now();
+                          const diffMs = Math.max(0, ban.bannedUntil - now);
+                          const hoursLeft = Math.max(1, Math.ceil(diffMs / (60 * 60 * 1000)));
+
+                          return (
+                            <tr key={idx} className="hover:bg-slate-900/50 transition-colors">
+                              <td className="px-4 py-3 font-mono font-bold text-amber-300">
+                                {ban.ip}
+                              </td>
+                              <td className="px-4 py-3 text-slate-300">
+                                {ban.reason} ({ban.attemptCount} total attempts)
+                              </td>
+                              <td className="px-4 py-3 text-slate-400">
+                                {new Date(ban.bannedAt).toLocaleString()}
+                              </td>
+                              <td className="px-4 py-3">
+                                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 text-[11px] font-semibold border border-rose-500/30">
+                                  ~{hoursLeft} hrs remaining
+                                </span>
+                              </td>
+                              <td className="px-4 py-3 text-right">
+                                <button
+                                  onClick={() => handleUnbanIp(ban.ip)}
+                                  className="px-3 py-1 rounded-lg bg-gold-metallic text-slate-950 font-bold text-xs uppercase tracking-wider hover:opacity-90 cursor-pointer shadow-xs"
+                                >
+                                  Unban IP
+                                </button>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
               </div>
 
               {/* Audit Logs List */}
