@@ -1,0 +1,8 @@
+{
+  "name": "Indy Home Collection — Real Estate & Master Prompt Studio",
+  "description": "Master Website Prompt Studio and high-converting real estate digital storefront for Indy Home Collection, Your Neighbour Realtor in Indiana.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

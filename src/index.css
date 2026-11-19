@@ -1,0 +1,230 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-luxury-display: 'Cinzel', 'Playfair Display', Georgia, serif;
+    --font-luxury-serif: 'Cormorant Garamond', Garamond, 'Playfair Display', Georgia, serif;
+    --font-luxury-sans: 'Montserrat', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-body: 'DM Sans', 'Montserrat', system-ui, sans-serif;
+  }
+}
+
+/* Luxury Color Themes (Dark Luxury Noir Aesthetic) */
+/* 01: Imperial Noir & Champagne Gold */
+body.theme-editorial {
+  --bg-primary: #070A0F;
+  --bg-surface: #0E131F;
+  --bg-surface-subtle: #141C2E;
+  --bg-dark-obsidian: #05070A;
+  --text-main: #F8FAFC;
+  --text-muted: #94A3B8;
+  --accent-gold: #D4AF37;
+  --accent-gold-light: #F6EBD7;
+  --accent-gold-dark: #8C6721;
+  --accent-hover: #E3BE72;
+  --border-gold-subtle: rgba(212, 175, 55, 0.3);
+  --border-subtle: rgba(212, 175, 55, 0.2);
+  --hero-dark: #05070A;
+}
+
+/* 02: High-Jewelry Emerald & Warm Gold */
+body.theme-earthy {
+  --bg-primary: #060E0B;
+  --bg-surface: #0B1914;
+  --bg-surface-subtle: #11241D;
+  --bg-dark-obsidian: #040A08;
+  --text-main: #F4FAF6;
+  --text-muted: #8AA397;
+  --accent-gold: #C9A86A;
+  --accent-gold-light: #F2E9D8;
+  --accent-gold-dark: #846830;
+  --accent-hover: #D8BA7E;
+  --border-gold-subtle: rgba(201, 168, 106, 0.32);
+  --border-subtle: rgba(201, 168, 106, 0.2);
+  --hero-dark: #040A08;
+}
+
+/* 03: Haute Parisian Cashmere & Royal Gold */
+body.theme-luxury {
+  --bg-primary: #0C0A08;
+  --bg-surface: #17130F;
+  --bg-surface-subtle: #221D17;
+  --bg-dark-obsidian: #070504;
+  --text-main: #FAF5F0;
+  --text-muted: #A3968B;
+  --accent-gold: #CBA258;
+  --accent-gold-light: #F7EEDA;
+  --accent-gold-dark: #8C6520;
+  --accent-hover: #DEB86F;
+  --border-gold-subtle: rgba(203, 162, 88, 0.32);
+  --border-subtle: rgba(203, 162, 88, 0.2);
+  --hero-dark: #070504;
+}
+
+/* 04: Royal Midnight Navy & Platinum Gold */
+body.theme-midwestern {
+  --bg-primary: #060A12;
+  --bg-surface: #0B1322;
+  --bg-surface-subtle: #121E36;
+  --bg-dark-obsidian: #04060C;
+  --text-main: #F4F7FB;
+  --text-muted: #8A9BB5;
+  --accent-gold: #D6B575;
+  --accent-gold-light: #F7EED8;
+  --accent-gold-dark: #917230;
+  --accent-hover: #E4C88E;
+  --border-gold-subtle: rgba(214, 181, 117, 0.3);
+  --border-subtle: rgba(214, 181, 117, 0.2);
+  --hero-dark: #04060C;
+}
+
+body {
+  background-color: #070A0F;
+  color: #F8FAFC;
+}
+
+/* Luxury Font Typography Classes */
+.font-luxury-display {
+  font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+  letter-spacing: 0.04em;
+}
+
+.font-luxury-serif {
+  font-family: 'Cormorant Garamond', Garamond, 'Playfair Display', Georgia, serif;
+}
+
+.font-serif-luxury {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+}
+
+.font-luxury-sans {
+  font-family: 'Montserrat', 'Plus Jakarta Sans', system-ui, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.font-sans-clean {
+  font-family: 'Montserrat', 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+.font-body-read {
+  font-family: 'DM Sans', 'Montserrat', system-ui, sans-serif;
+}
+
+/* Luxury Metallic & Shimmer Accents */
+@keyframes gold-shine-sweep {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes sparkle-twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.75) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3) rotate(45deg);
+  }
+}
+
+.animated-shining-word {
+  background: linear-gradient(
+    115deg,
+    #F6EBD7 0%,
+    #D4AF37 20%,
+    #FFF8E1 45%,
+    #FFFFFF 50%,
+    #FFF8E1 55%,
+    #E8C368 75%,
+    #F6EBD7 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gold-shine-sweep 3.5s ease-in-out infinite;
+  display: inline-block;
+  will-change: background-position;
+}
+
+.animated-gold-glow-word {
+  background: linear-gradient(
+    120deg,
+    #8C6721 0%,
+    #D4AF37 25%,
+    #FFFCE6 48%,
+    #F5E4BE 54%,
+    #B38936 75%,
+    #8C6721 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gold-shine-sweep 3s linear infinite;
+  display: inline-block;
+}
+
+.sparkle-twinkle {
+  animation: sparkle-twinkle 2.4s ease-in-out infinite;
+}
+
+.text-gold-metallic {
+  background: linear-gradient(135deg, #DFB982 0%, #F5E2BE 35%, #D4AF37 70%, #A8813B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gold-metallic {
+  background: linear-gradient(135deg, #DFB982 0%, #D4AF37 50%, #A8813B 100%);
+}
+
+.border-gold-lux {
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+.shadow-luxury-glow {
+  box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.35);
+}
+
+.shadow-luxury-card {
+  box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(212, 175, 55, 0.25);
+}
+
+.card-luxury {
+  background-color: rgba(14, 19, 31, 0.94);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 15px -3px rgba(212, 175, 55, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #F8FAFC;
+}
+
+.card-luxury:hover {
+  border-color: rgba(212, 175, 55, 0.65);
+  box-shadow: 0 20px 45px -15px rgba(212, 175, 55, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.4);
+}
+
+.badge-gold {
+  background: linear-gradient(135deg, rgba(30, 24, 14, 0.95) 0%, rgba(18, 14, 9, 0.9) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  color: #F6EBD7;
+}
+
+.badge-noir {
+  background: linear-gradient(135deg, #0B0F17 0%, #161E2D 100%);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  color: #F6EBD7;
+}
+
+.divider-gold-sheen {
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+}
+
+/* Custom smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
