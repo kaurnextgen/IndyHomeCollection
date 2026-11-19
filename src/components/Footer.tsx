@@ -156,9 +156,9 @@ export const Footer: React.FC<FooterProps> = ({ onCallClick, onConsultClick, onA
                 <span aria-hidden="true" className="text-[#D4AF37]/50">·</span>
                 <button
                   onClick={onAdminClick}
-                  className="text-amber-400/90 hover:text-amber-300 transition-colors underline cursor-pointer"
+                  className="text-amber-400/90 hover:text-amber-300 transition-colors underline cursor-pointer font-medium"
                 >
-                  Realtor Portal (Admin)
+                  Super Admin Portal
                 </button>
               </>
             )}

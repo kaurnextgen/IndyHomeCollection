@@ -14,7 +14,8 @@ import { FAQSection } from './components/FAQSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { PromptStudio } from './components/PromptStudio';
-import { AdminPortal } from './components/AdminPortal';
+import { SuperAdminPortal } from './components/SuperAdminPortal';
+import { AnnouncementBar } from './components/AnnouncementBar';
 import { CallModal } from './components/CallModal';
 import { BookingModal } from './components/BookingModal';
 import { AppMode, ThemeId, IndianaMarket } from './types';
@@ -72,6 +73,9 @@ export default function App() {
     <LanguageProvider>
       <div className="min-h-screen flex flex-col transition-colors duration-300 bg-[#070A0F] text-slate-100 selection:bg-amber-500/30 selection:text-amber-200">
         
+        {/* Top VIP Broadcast Announcement Bar (Controlled by Super Admin) */}
+        {currentMode !== 'admin' && <AnnouncementBar />}
+
         {/* Top Header Navigation */}
       <Header
         currentMode={currentMode}
@@ -168,8 +172,8 @@ export default function App() {
             onPreviewSiteClick={() => setCurrentMode('preview')}
           />
         ) : (
-          /* Executive Realtor Admin Portal */
-          <AdminPortal
+          /* Super Admin Console & Root Brokerage Command */
+          <SuperAdminPortal
             onBackToWebsite={() => setCurrentMode('preview')}
             onOpenStudio={() => setCurrentMode('studio')}
           />

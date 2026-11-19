@@ -29,6 +29,8 @@ export interface LeadItem {
   priority: LeadPriority;
   createdAt: string;
   notes: LeadNote[];
+  assignedAgentId?: string;
+  assignedAgentName?: string;
 }
 
 export interface PropertyListingItem {
@@ -66,6 +68,32 @@ export interface ReviewItem {
   date: string;
 }
 
+export type TeamMemberRole = 'Super Admin' | 'Managing Broker' | 'Senior Realtor' | 'Buyer Specialist' | 'Transaction Coordinator';
+
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: TeamMemberRole;
+  email: string;
+  phone: string;
+  avatar: string;
+  activeLeads: number;
+  closedVolume: string;
+  commissionSplit: string;
+  status: 'active' | 'away' | 'busy';
+  license: string;
+  bio?: string;
+}
+
+export interface AuditLogEntry {
+  id: string;
+  action: string;
+  user: string;
+  timestamp: string;
+  category: 'auth' | 'lead' | 'property' | 'settings' | 'team' | 'system';
+  details: string;
+}
+
 export interface AdminSettingsData {
   realtorName: string;
   realtorTitle: string;
@@ -78,6 +106,15 @@ export interface AdminSettingsData {
   smsAlerts: boolean;
   autoAssignNewLeads: boolean;
   dailyDigest: boolean;
+  announcementActive: boolean;
+  announcementText: string;
+  announcementLinkText: string;
+  announcementLinkUrl: string;
+  maintenanceMode: boolean;
+  leadAutoRouting: boolean;
+  superAdminPin: string;
+  currency: string;
+  defaultCommissionRate: number;
 }
 
 export type TargetBuilder = 'bolt' | 'lovable' | 'v0' | 'framer' | 'replit';

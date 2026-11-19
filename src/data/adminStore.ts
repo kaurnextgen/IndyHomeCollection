@@ -1,4 +1,4 @@
-import { LeadItem, PropertyListingItem, ReviewItem, AdminSettingsData, LeadStatus, LeadPriority } from '../types';
+import { LeadItem, PropertyListingItem, ReviewItem, AdminSettingsData, LeadStatus, LeadPriority, TeamMember, AuditLogEntry } from '../types';
 import { ASSET_IMAGES } from '../assets/imagesMap';
 
 const STORAGE_KEYS = {
@@ -7,6 +7,9 @@ const STORAGE_KEYS = {
   REVIEWS: 'indy_admin_reviews_v1',
   SETTINGS: 'indy_admin_settings_v1',
   AUTH: 'indy_admin_auth_v1',
+  SUPER_AUTH: 'indy_admin_super_auth_v1',
+  TEAM: 'indy_admin_team_v1',
+  LOGS: 'indy_admin_logs_v1',
 };
 
 // Initial Realistic Leads for Central Indiana
@@ -275,6 +278,110 @@ const DEFAULT_REVIEWS: ReviewItem[] = [
   },
 ];
 
+// Initial Team Members for Super Admin Roster
+const DEFAULT_TEAM: TeamMember[] = [
+  {
+    id: 'team-1',
+    name: 'Indy Executive Broker',
+    role: 'Super Admin',
+    email: 'broker@indyhomecollection.com',
+    phone: '(317) 408-9532',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
+    activeLeads: 8,
+    closedVolume: '$14.2M',
+    commissionSplit: '100%',
+    status: 'active',
+    license: 'RB24001988 (Indiana Principal Broker)',
+    bio: 'Founder & Principal Managing Broker overseeing Central Indiana luxury real estate portfolio and investment developments.',
+  },
+  {
+    id: 'team-2',
+    name: 'Navjot Singh',
+    role: 'Senior Realtor',
+    email: 'navjot@indyhomecollection.com',
+    phone: '(317) 408-9532',
+    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80',
+    activeLeads: 5,
+    closedVolume: '$8.6M',
+    commissionSplit: '85/15',
+    status: 'active',
+    license: 'RS21004812 (Hamilton County Specialist)',
+    bio: 'Carmel & Fishers luxury residential specialist, multilingual relocation advisor for Northside communities.',
+  },
+  {
+    id: 'team-3',
+    name: 'Elena Rostova',
+    role: 'Buyer Specialist',
+    email: 'elena@indyhomecollection.com',
+    phone: '(317) 408-9532',
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80',
+    activeLeads: 6,
+    closedVolume: '$5.4M',
+    commissionSplit: '80/20',
+    status: 'active',
+    license: 'RS22009140 (Boone & Hendricks Specialist)',
+    bio: 'Zionsville, Brownsburg & Avon buyer advisor, master negotiator on new construction and estate acreage.',
+  },
+  {
+    id: 'team-4',
+    name: 'Marcus Vance',
+    role: 'Transaction Coordinator',
+    email: 'closing@indyhomecollection.com',
+    phone: '(317) 408-9532',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+    activeLeads: 12,
+    closedVolume: '$28.2M Managed',
+    commissionSplit: 'Salary + Bonus',
+    status: 'active',
+    license: 'TC-IN-9941 (Certified Escrow Coordinator)',
+    bio: 'Manages title escrow, earnest deposits, home inspections, and closing contingencies from contract to keys.',
+  },
+];
+
+// Initial Audit Logs
+const DEFAULT_AUDIT_LOGS: AuditLogEntry[] = [
+  {
+    id: 'log-1',
+    action: 'Lead Captured via CMA Tool',
+    user: 'System Webhook',
+    timestamp: '2026-11-19T17:40:00.000Z',
+    category: 'lead',
+    details: 'Dr. Michael & Sarah Vance submitted $1,250,000 Zionsville home valuation inquiry.',
+  },
+  {
+    id: 'log-2',
+    action: 'Super Admin Elevated Session',
+    user: 'Super Admin',
+    timestamp: '2026-11-19T16:15:00.000Z',
+    category: 'auth',
+    details: 'Master PIN authorization verified for root administrator access.',
+  },
+  {
+    id: 'log-3',
+    action: 'Listing Price Updated',
+    user: 'Navjot Singh',
+    timestamp: '2026-11-18T20:30:00.000Z',
+    category: 'property',
+    details: 'Price improved for The Grand Junction Modern Farmhouse ($645,000).',
+  },
+  {
+    id: 'log-4',
+    action: 'Site Broadcast Banner Published',
+    user: 'Super Admin',
+    timestamp: '2026-11-18T14:10:00.000Z',
+    category: 'settings',
+    details: 'Activated top announcement banner for Carmel Lakefront preview tours.',
+  },
+  {
+    id: 'log-5',
+    action: 'Lead Assigned to Agent',
+    user: 'Super Admin',
+    timestamp: '2026-11-17T11:20:00.000Z',
+    category: 'team',
+    details: 'Assigned Lead #101 (Gurinder Sandhu) to Navjot Singh for Carmel Clay tour.',
+  },
+];
+
 // Default Settings
 const DEFAULT_SETTINGS: AdminSettingsData = {
   realtorName: 'Indy Home Collection Team',
@@ -288,6 +395,15 @@ const DEFAULT_SETTINGS: AdminSettingsData = {
   smsAlerts: true,
   autoAssignNewLeads: true,
   dailyDigest: true,
+  announcementActive: true,
+  announcementText: 'Exclusive Spring Previews: Private VIP walkthroughs open in Carmel & Zionsville this weekend.',
+  announcementLinkText: 'Schedule VIP Tour',
+  announcementLinkUrl: '#contact',
+  maintenanceMode: false,
+  leadAutoRouting: true,
+  superAdminPin: '7777',
+  currency: 'USD ($)',
+  defaultCommissionRate: 3.0,
 };
 
 // Dispatch Custom Event for live synchronization across components
@@ -539,12 +655,201 @@ export const adminStore = {
     document.body.removeChild(link);
   },
 
+  // --- SUPER ADMIN AUTH STATUS ---
+  isSuperAdminAuthenticated(): boolean {
+    try {
+      return localStorage.getItem(STORAGE_KEYS.SUPER_AUTH) === 'true';
+    } catch {
+      return false;
+    }
+  },
+
+  setSuperAdminAuthenticated(val: boolean): void {
+    try {
+      localStorage.setItem(STORAGE_KEYS.SUPER_AUTH, val ? 'true' : 'false');
+      if (val) {
+        localStorage.setItem(STORAGE_KEYS.AUTH, 'true');
+      }
+      notifyUpdate();
+    } catch (e) {
+      console.error(e);
+    }
+  },
+
+  // --- TEAM / AGENT MANAGEMENT (SUPER ADMIN) ---
+  getTeam(): TeamMember[] {
+    try {
+      const data = localStorage.getItem(STORAGE_KEYS.TEAM);
+      if (data) return JSON.parse(data);
+    } catch (e) {
+      console.error(e);
+    }
+    return DEFAULT_TEAM;
+  },
+
+  saveTeam(team: TeamMember[]): void {
+    try {
+      localStorage.setItem(STORAGE_KEYS.TEAM, JSON.stringify(team));
+      notifyUpdate();
+    } catch (e) {
+      console.error(e);
+    }
+  },
+
+  addTeamMember(member: Omit<TeamMember, 'id'>): TeamMember {
+    const team = this.getTeam();
+    const newMember: TeamMember = {
+      id: `team-${Date.now()}`,
+      ...member,
+    };
+    team.push(newMember);
+    this.saveTeam(team);
+    this.addAuditLog({
+      action: 'Team Member Added',
+      user: 'Super Admin',
+      category: 'team',
+      details: `Added ${newMember.name} as ${newMember.role}.`,
+    });
+    return newMember;
+  },
+
+  updateTeamMember(id: string, updates: Partial<TeamMember>): void {
+    const team = this.getTeam();
+    const idx = team.findIndex((m) => m.id === id);
+    if (idx !== -1) {
+      team[idx] = { ...team[idx], ...updates };
+      this.saveTeam(team);
+      this.addAuditLog({
+        action: 'Team Member Updated',
+        user: 'Super Admin',
+        category: 'team',
+        details: `Updated details for ${team[idx].name}.`,
+      });
+    }
+  },
+
+  deleteTeamMember(id: string): void {
+    const member = this.getTeam().find((m) => m.id === id);
+    const team = this.getTeam().filter((m) => m.id !== id);
+    this.saveTeam(team);
+    if (member) {
+      this.addAuditLog({
+        action: 'Team Member Removed',
+        user: 'Super Admin',
+        category: 'team',
+        details: `Removed ${member.name} (${member.role}) from roster.`,
+      });
+    }
+  },
+
+  // --- LEAD ASSIGNMENT ---
+  assignLeadToAgent(leadId: string, agentId: string, agentName: string): void {
+    const leads = this.getLeads();
+    const lead = leads.find((l) => l.id === leadId);
+    if (lead) {
+      lead.assignedAgentId = agentId;
+      lead.assignedAgentName = agentName;
+      this.addLeadNote(leadId, `Lead assigned to ${agentName}.`, 'Super Admin');
+      this.saveLeads(leads);
+      this.addAuditLog({
+        action: 'Lead Reassigned',
+        user: 'Super Admin',
+        category: 'lead',
+        details: `Assigned Lead #${leadId} (${lead.name}) to ${agentName}.`,
+      });
+    }
+  },
+
+  // --- AUDIT LOGS (SUPER ADMIN) ---
+  getAuditLogs(): AuditLogEntry[] {
+    try {
+      const data = localStorage.getItem(STORAGE_KEYS.LOGS);
+      if (data) return JSON.parse(data);
+    } catch (e) {
+      console.error(e);
+    }
+    return DEFAULT_AUDIT_LOGS;
+  },
+
+  saveAuditLogs(logs: AuditLogEntry[]): void {
+    try {
+      localStorage.setItem(STORAGE_KEYS.LOGS, JSON.stringify(logs));
+      notifyUpdate();
+    } catch (e) {
+      console.error(e);
+    }
+  },
+
+  addAuditLog(entry: Omit<AuditLogEntry, 'id' | 'timestamp'>): void {
+    const logs = this.getAuditLogs();
+    const newLog: AuditLogEntry = {
+      id: `log-${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      ...entry,
+    };
+    logs.unshift(newLog);
+    // Keep max 100 logs
+    if (logs.length > 100) logs.pop();
+    this.saveAuditLogs(logs);
+  },
+
+  // --- FULL DATABASE BACKUP & RESTORE (SUPER ADMIN) ---
+  exportDatabaseBackup(): void {
+    const backup = {
+      exportDate: new Date().toISOString(),
+      version: '2.0-super-admin',
+      platform: 'Indy Home Collection Real Estate',
+      leads: this.getLeads(),
+      properties: this.getProperties(),
+      reviews: this.getReviews(),
+      team: this.getTeam(),
+      settings: this.getSettings(),
+      auditLogs: this.getAuditLogs(),
+    };
+
+    const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `indy-homes-superadmin-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    this.addAuditLog({
+      action: 'Full System Backup Exported',
+      user: 'Super Admin',
+      category: 'system',
+      details: 'Complete JSON state snapshot generated and downloaded.',
+    });
+  },
+
+  importDatabaseBackup(jsonString: string): boolean {
+    try {
+      const data = JSON.parse(jsonString);
+      if (data.leads) localStorage.setItem(STORAGE_KEYS.LEADS, JSON.stringify(data.leads));
+      if (data.properties) localStorage.setItem(STORAGE_KEYS.PROPERTIES, JSON.stringify(data.properties));
+      if (data.reviews) localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(data.reviews));
+      if (data.team) localStorage.setItem(STORAGE_KEYS.TEAM, JSON.stringify(data.team));
+      if (data.settings) localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(data.settings));
+      if (data.auditLogs) localStorage.setItem(STORAGE_KEYS.LOGS, JSON.stringify(data.auditLogs));
+      notifyUpdate();
+      return true;
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+  },
+
   // --- RESET ALL DATA ---
   resetAll(): void {
     try {
       localStorage.setItem(STORAGE_KEYS.LEADS, JSON.stringify(DEFAULT_LEADS));
       localStorage.setItem(STORAGE_KEYS.PROPERTIES, JSON.stringify(DEFAULT_PROPERTIES));
       localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(DEFAULT_REVIEWS));
+      localStorage.setItem(STORAGE_KEYS.TEAM, JSON.stringify(DEFAULT_TEAM));
+      localStorage.setItem(STORAGE_KEYS.LOGS, JSON.stringify(DEFAULT_AUDIT_LOGS));
       localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(DEFAULT_SETTINGS));
       notifyUpdate();
     } catch (e) {

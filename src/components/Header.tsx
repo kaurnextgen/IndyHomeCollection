@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Monitor, Palette, Menu, X, Globe, Shield } from 'lucide-react';
+import { Sparkles, Monitor, Palette, Menu, X, Globe, Shield, Crown } from 'lucide-react';
 import { AppMode, ThemeId } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { Language } from '../data/translations';
@@ -117,8 +117,8 @@ export const Header: React.FC<HeaderProps> = ({
               </span>
             ) : (
               <span className="text-[11px] text-amber-300 font-luxury-display tracking-widest uppercase flex items-center gap-1.5">
-                <Shield className="w-3.5 h-3.5 text-amber-400" />
-                EXECUTIVE REALTOR ADMIN & CRM CONSOLE
+                <Crown className="w-3.5 h-3.5 text-amber-400" />
+                SUPER ADMIN & BROKERAGE CONSOLE
               </span>
             )}
           </nav>
@@ -186,11 +186,11 @@ export const Header: React.FC<HeaderProps> = ({
                     ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-slate-950 shadow-xs font-bold border border-[#D4AF37]'
                     : 'text-slate-400 hover:text-amber-300'
                 }`}
-                title="Realtor Admin CRM & Pipeline"
+                title="Super Admin Brokerage Console"
               >
-                <Shield className="w-3.5 h-3.5 text-amber-300" />
-                <span className="hidden md:inline">Admin Portal</span>
-                <span className="md:hidden">Admin</span>
+                <Crown className="w-3.5 h-3.5 text-amber-300" />
+                <span className="hidden md:inline">Super Admin</span>
+                <span className="md:hidden">Super</span>
               </button>
             </div>
 
