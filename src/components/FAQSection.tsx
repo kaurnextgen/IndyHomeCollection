@@ -61,9 +61,9 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
         'Before touring homes, securing a verified pre-approval letter from a reputable local lender is vital. Sellers in competitive communities like Fishers or Plainfield require this before reviewing offers. You will also want 1%–2% in liquid funds ready for your earnest money deposit upon contract acceptance, plus funds for home inspection ($400–$600) and closing costs.',
     },
     {
-      id: 'neighbour',
+      id: 'advisory',
       category: 'General',
-      question: "How does working with 'Your Neighbour Realtor' differ from large corporate teams?",
+      question: "How does working with Indy Home Collection differ from large corporate teams?",
       answer:
         'At large corporate agencies, clients are often passed between lead coordinators, showing assistants, and transaction coordinators. When you partner with Indy Home Collection, you work directly with us at every stage. You have our direct personal cell at (317) 408-9532, receiving honest counsel focused on your family’s well-being without high-pressure sales quotas.',
     },

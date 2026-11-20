@@ -49,7 +49,7 @@ export const CallModal: React.FC<CallModalProps> = ({ isOpen, onClose }) => {
             Call Indy Home Collection
           </h3>
           <p className="text-xs text-slate-300 font-body-read font-light">
-            Connect directly with your Indiana Neighbour Realtor for confidential buying, selling, or investment guidance.
+            Connect directly with our Indiana Real Estate Advisory for confidential buying, selling, or investment guidance.
           </p>
         </div>
 

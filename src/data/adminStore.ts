@@ -243,7 +243,7 @@ const DEFAULT_REVIEWS: ReviewItem[] = [
     purchasePrice: '$880,000',
     headline: '“Found Us an Off-Market Dream in Carmel Clay Schools Within 2 Weeks”',
     story: 'Moving from the East Coast with two young children, we needed someone who understood not just floor plans, but school zoning, quiet cul-de-sacs, and our Punjabi community connections. They were patient, incredibly knowledgeable, and negotiated $25,000 below asking with brand new roof concessions.',
-    closingStatement: '“She treated our family like her own neighbours from day one.”',
+    closingStatement: '“She treated our family like her own family from day one.”',
     rating: 5,
     status: 'approved',
     date: '2026-10-14',

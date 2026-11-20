@@ -305,3 +305,4 @@ export function clearAllBans(): void {
     details: 'Super Admin purged all active IP ban and submission rate limit records.',
   });
 }
+

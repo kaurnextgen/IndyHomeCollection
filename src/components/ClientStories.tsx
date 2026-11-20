@@ -91,7 +91,7 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({
       purchasePrice: '$365,000 Purchase',
       image: ASSET_IMAGES.clientPunjabiAvon,
       languageSupport: 'Fluent Punjabi & Hindi Consultation',
-      headline: 'From pre-approval to keys in hand, they guided our family like a trusted neighbor.',
+      headline: 'From pre-approval to keys in hand, they guided our family with trusted expertise.',
       story:
         'As first-time home buyers in the US, we had countless questions about Indiana property tax caps, homeowner association covenants, and escrow accounts. They took us through more than 15 homes across Avon, Plainfield, and Brownsburg without ever rushing us. She honestly advised us against two houses with hidden drainage problems and found this beautiful brick home with a large yard for our children.',
       closingStatement: 'Closed with 30-day conventional financing and immediate occupancy in Avon Four-Star Schools.',

@@ -73,7 +73,7 @@ export const TrustCredentialsLogos: React.FC<{ className?: string; isDark?: bool
 export const LuxuryLogo: React.FC<LuxuryLogoProps> = ({
   variant = 'header',
   className = '',
-  sloganText = 'Your Neighbour Realtor · Indiana',
+  sloganText = 'Real Estate & Advisory · Indiana',
   size,
   onClick,
 }) => {

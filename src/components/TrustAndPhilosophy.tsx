@@ -15,8 +15,8 @@ export const TrustAndPhilosophy: React.FC<TrustAndPhilosophyProps> = ({
   const commitments = [
     {
       icon: <HeartHandshake className="w-6 h-6 text-amber-800" />,
-      title: 'Neighbour-First Relationship',
-      desc: 'Real estate is about people and their lives, not transactional volume. We prioritize honest counsel, clear expectations, and long-term neighborly respect over quick commissions.',
+      title: 'Client-First Relationship',
+      desc: 'Real estate is about people and their lives, not transactional volume. We prioritize honest counsel, clear expectations, and long-term fiduciary respect over quick commissions.',
     },
     {
       icon: <PhoneCall className="w-6 h-6 text-amber-800" />,

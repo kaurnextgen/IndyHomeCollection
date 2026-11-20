@@ -93,7 +93,7 @@ Follow every instruction below with extreme precision. Do not skip sections, do 
 - **Brand Name**: Indy Home Collection
 - **Industry / Category**: Real Estate (Residential & Investment)
 - **Primary Market / Location**: Indiana, USA (Focusing on ${config.regionalFocus || 'Greater Indianapolis, Carmel, Fishers, Zionsville, Westfield, and statewide Indiana'})
-- **Trust Anchor & Slogan**: "Your Neighbour Realtor" (Accessible, authentic, hyper-local guidance without intimidating corporate jargon)
+- **Trust Anchor & Slogan**: "Your Trusted Realtor" (Accessible, authentic, hyper-local guidance without intimidating corporate jargon)
 - **Direct Contact Phone**: (317) 408-9532 (Click-to-call must be primary and active everywhere)
 - **Primary Core Services**:
   1. Buying a Home (First-time buyers, move-up homes, neighborhood matching)
@@ -105,7 +105,7 @@ Follow every instruction below with extreme precision. Do not skip sections, do 
 > **CRITICAL RULE ON BUSINESS FACTS**:
 > Never fabricate testimonials, star counts ("4.9/5 based on 200 reviews"), awards ("#1 Realtor in Indiana 2024"), founding dates, or fake transaction numbers ("$50M+ Sold"). 
 > If a testimonial slot or license number is rendered, use explicit placeholder syntax: \`[Client Testimonial — Available upon verified closing]\` or \`[Indiana Real Estate License # Pending]\`.
-> Ground all authority strictly in: local Indiana neighborhood mastery, personalized neighbor-first accessibility, transparent market data, and immediate direct line to us.
+> Ground all authority strictly in: local Indiana neighborhood mastery, personalized client-first accessibility, transparent market data, and immediate direct line to us.
 
 ---
 
@@ -135,11 +135,11 @@ Follow every instruction below with extreme precision. Do not skip sections, do 
 
 Sequence the page as a cohesive persuasion funnel:
 \`\`\`
-[1. Hero with Direct Call] → [2. Real Estate Pillars] → [3. Indiana Community Guide] → [4. Interactive Home Valuation] → [5. Investment ROI Calculator] → [6. Neighbour Promise / Trust] → [7. Consultation Booking & Direct Call CTA] → [8. Quiet Footer]
+[1. Hero with Direct Call] → [2. Real Estate Pillars] → [3. Indiana Community Guide] → [4. Interactive Home Valuation] → [5. Investment ROI Calculator] → [6. Real Estate Advisory Promise / Trust] → [7. Consultation Booking & Direct Call CTA] → [8. Quiet Footer]
 \`\`\`
 
 #### Section 1: Hero Section
-- **Headline**: "Your Trusted Indiana Neighbor in Every Real Estate Move."
+- **Headline**: "Your Trusted Indiana Guide in Every Real Estate Move."
 - **Sub-headline**: "Guiding you through buying, selling, investing, and relocating across Greater Indianapolis and Central Indiana with genuine local care and dedicated one-on-one attention."
 - **Primary CTA**: Button with phone icon linking to \`tel:3174089532\` — \`"Call (317) 408-9532"\`.
 - **Secondary CTA**: \`"Schedule Consultation"\` (triggers booking modal).
@@ -194,7 +194,7 @@ A functional, conversion-optimized valuation calculator:
 - **Outputs**: Estimated Monthly Mortgage, Net Cash Flow, Estimated Cap Rate (tabular figures).
 - **CTA**: "Review Off-Market Investment Deals with Us".
 
-#### Section 6: "The Neighbour Realtor Promise" (Authentic Trust)
+#### Section 6: "The Indy Home Collection Promise" (Authentic Trust)
 - Focus on authentic, approachable value:
   - **No High-Pressure Sales**: Transparent guidance focused on your long-term family and financial well-being.
   - **Direct Accessibility**: You work directly with us at (317) 408-9532, never an outsourced assistant.
@@ -207,7 +207,7 @@ A functional, conversion-optimized valuation calculator:
   - Right: Clean interactive booking form with Name, Phone, Email, Service Interest (Buying, Selling, Investing, Relocating), and Preferred Contact Time.
 
 #### Section 8: Quiet Footer
-- Wordmark: "Indy Home Collection — Your Neighbour Realtor"
+- Wordmark: "Indy Home Collection — Real Estate & Advisory"
 - Direct Contact: Phone: (317) 408-9532 · Service Area: Indiana, USA
 - Equal Housing Opportunity statement: "Equal Housing Opportunity. Real Estate Services in Indiana."
 - Clean unboxed navigation links.

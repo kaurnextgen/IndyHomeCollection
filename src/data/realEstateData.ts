@@ -219,7 +219,7 @@ export const SERVICE_PILLARS: ServicePillar[] = [
     title: 'Buying Your Home',
     subtitle: 'From First-Time Buyers to Dream Move-Up Estates',
     description:
-      'Finding the right Indiana home is about more than square footage—it is about finding the neighborhood, school system, and community rhythm that fits your lifestyle. As your neighbour realtor, we walk beside you through private showings, off-market opportunities, and strategic offer negotiations.',
+      'Finding the right Indiana home is about more than square footage—it is about finding the neighborhood, school system, and community rhythm that fits your lifestyle. As your dedicated real estate advisory, we walk beside you through private showings, off-market opportunities, and strategic offer negotiations.',
     bullets: [
       'Instant MLS notifications & off-market pocket listings',
       'Unvarnished neighborhood and school district walkthroughs',

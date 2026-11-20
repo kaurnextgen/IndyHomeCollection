@@ -168,13 +168,13 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       promptStudio: 'Master Prompt',
     },
     brand: {
-      slogan: 'Your Neighbour Realtor · Indiana',
+      slogan: 'Your Trusted Realtor · Indiana',
       directLine: 'Direct Realtor Line: (317) 408-9532',
       area: 'Serving Greater Indianapolis & All Indiana',
     },
     hero: {
       kicker: 'Indiana Residential & Investment Real Estate',
-      headline: 'Your Trusted Indiana Neighbor in Every Real Estate Move.',
+      headline: 'Your Trusted Indiana Guide in Every Real Estate Move.',
       subheadline:
         'Whether you are buying your family dream home, selling for maximum return, investing in reliable Midwest cash flow, or relocating to the Hoosier State—we deliver transparent, dedicated local guidance with zero pressure.',
       callCta: 'Call (317) 408-9532',
@@ -223,7 +223,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       kicker: '01. Dedicated Real Estate Representation',
       title: 'Four Core Pillars Built Around Your Goals',
       subtitle:
-        'Real estate decisions are personal, consequential, and uniquely yours. Whether stepping into homeownership, maximizing home equity, or expanding your portfolio, we guide every milestone with neighborly dedication.',
+        'Real estate decisions are personal, consequential, and uniquely yours. Whether stepping into homeownership, maximizing home equity, or expanding your portfolio, we guide every milestone with dedicated advisory and care.',
       whatWeDeliver: 'What We Deliver',
       discussDirectly: 'Or discuss directly: (317) 408-9532',
     },
@@ -269,7 +269,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       requestDeals: 'Request Current Off-Market Investment List',
     },
     trust: {
-      kicker: '05. The Neighbour Realtor Commitment',
+      kicker: '05. The Indy Home Collection Commitment',
       title: 'Rooted in Authenticity. Driven by What Matters to You.',
       subtitle:
         'In an industry crowded with flashy billboard claims and automated algorithms, Indy Home Collection stands for something grounded: genuine hospitality, local know-how, and dependable follow-through.',
@@ -277,7 +277,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       readySubtitle: 'Call or text us directly at (317) 408-9532 for a confidential, no-obligation conversation.',
     },
     stories: {
-      kicker: 'Real Indian & Punjabi Client Closings · Trusted Neighbor Guidance',
+      kicker: 'Real Indian & Punjabi Client Closings · Trusted Guidance',
       title: 'Client Success Stories & Closing Statements',
       subtitle:
         'Serving our vibrant Indian, Punjabi, and multicultural communities across Carmel, Fishers, Zionsville, Avon, and Greater Indianapolis with culturally attuned service in English, Punjabi, and Hindi.',
@@ -290,12 +290,12 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       kicker: 'Clear Answers · No Industry Jargon',
       title: 'Frequently Asked Questions',
       subtitle:
-        'Everything you need to know about navigating the Indiana real estate market, pricing strategies, and working with your neighbor realtor.',
+        'Everything you need to know about navigating the Indiana real estate market, pricing strategies, and working with our dedicated real estate advisory.',
       haveQuestion: 'Have a specific question about your situation?',
       askOnline: 'Ask Online',
     },
     contact: {
-      kicker: '06. Connect With Your Neighbour Realtor',
+      kicker: '06. Connect With Our Real Estate Advisory',
       title: 'Let’s Start the Conversation',
       subtitle:
         'Whether you need a quick answer about an Indiana neighborhood or a full strategy for selling or investing, our team is ready to assist.',
@@ -311,7 +311,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       submitButton: 'Submit Consultation Request',
     },
     footer: {
-      slogan: 'Your Neighbour Realtor · Indiana',
+      slogan: 'Your Trusted Realtor · Indiana',
       servicesHeader: 'Services',
       communitiesHeader: 'Key Communities',
       connectHeader: 'Connect Directly',
@@ -332,7 +332,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       promptStudio: 'मास्टर प्रॉम्प्ट',
     },
     brand: {
-      slogan: 'आपके अपने पड़ोसी रियलटर · इंडियाना',
+      slogan: 'आपके अपने विश्वसनीय रियलटर · इंडियाना',
       directLine: 'सीधा रियलटर नंबर: (317) 408-9532',
       area: 'ग्रेटर इंडियानापोलिस और पूरे इंडियाना में सेवारत',
     },
@@ -387,7 +387,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       kicker: '01. समर्पित रियल एस्टेट प्रतिनिधित्व',
       title: 'आपके लक्ष्यों पर आधारित चार मुख्य स्तंभ',
       subtitle:
-        'घर खरीदना या बेचना आपके जीवन का सबसे महत्वपूर्ण फैसला है। हम हर कदम पर आपके साथ एक सच्चे पड़ोसी की तरह खड़े रहते हैं।',
+        'घर खरीदना या बेचना आपके जीवन का सबसे महत्वपूर्ण फैसला है। हम हर कदम पर आपके साथ एक सच्चे और विश्वसनीय सलाहकार की तरह खड़े रहते हैं।',
       whatWeDeliver: 'हमारी सेवाएं',
       discussDirectly: 'या सीधे बातचीत करें: (317) 408-9532',
     },
@@ -433,7 +433,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       requestDeals: 'ऑफ-मार्केट निवेश सौदों की सूची मांगें',
     },
     trust: {
-      kicker: '05. पड़ोसी रियलटर का वादा',
+      kicker: '05. हमारी निष्ठा और सेवा का वादा',
       title: 'सच्चाई में निहित। जो आपके लिए जरूरी है, वही हमारा लक्ष्य।',
       subtitle:
         'हम किसी हड़बड़ी या दबाव वाली बिक्री में विश्वास नहीं रखते—केवल पारदर्शी सलाह और दीर्घकालिक पारिवारिक संतुष्टि।',
@@ -458,7 +458,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       askOnline: 'ऑनलाइन पूछें',
     },
     contact: {
-      kicker: '06. अपने पड़ोसी रियलटर से जुड़ें',
+      kicker: '06. अपने रियल एस्टेट सलाहकार से जुड़ें',
       title: 'आइये बातचीत शुरू करें',
       subtitle: 'चाहे किसी स्कूल डिस्ट्रिक्ट के बारे में छोटी सी जानकारी चाहिए या घर बेचने की पूरी योजना—कौर आपकी सेवा में उपस्थित हैं।',
       directLine: 'सीधा नंबर',
@@ -473,7 +473,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       submitButton: 'परामर्श अनुरोध भेजें',
     },
     footer: {
-      slogan: 'आपके अपने पड़ोसी रियलटर · इंडियाना',
+      slogan: 'आपके अपने विश्वसनीय रियलटर · इंडियाना',
       servicesHeader: 'सेवाएं',
       communitiesHeader: 'प्रमुख क्षेत्र',
       connectHeader: 'सीधा संपर्क',
@@ -494,7 +494,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       promptStudio: 'ਮਾਸਟਰ ਪ੍ਰੌਮਪਟ',
     },
     brand: {
-      slogan: 'ਤੁਹਾਡਾ ਆਪਣਾ ਗੁਆਂਢੀ ਰੀਅਲਟਰ · ਇੰਡੀਆਨਾ',
+      slogan: 'ਤੁਹਾਡਾ ਭਰੋਸੇਮੰਦ ਰੀਅਲਟਰ · ਇੰਡੀਆਨਾ',
       directLine: 'ਸਿੱਧਾ ਰੀਅਲਟਰ ਫ਼ੋਨ: (317) 408-9532',
       area: 'ਗ੍ਰੇਟਰ ਇੰਡੀਆਨਾਪੋਲਿਸ ਅਤੇ ਪੂਰੇ ਇੰਡੀਆਨਾ ਵਿੱਚ ਸੇਵਾਦਾਰ',
     },
@@ -549,7 +549,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       kicker: '01. ਸਮਰਪਿਤ ਰੀਅਲ ਅਸਟੇਟ ਪ੍ਰਤੀਨਿਧਤਾ',
       title: 'ਤੁਹਾਡੇ ਟੀਚਿਆਂ ਦੁਆਲੇ ਬਣੇ ਚਾਰ ਮੁੱਖ ਥੰਮ੍ਹ',
       subtitle:
-        'ਘਰ ਖਰੀਦਣਾ ਜਾਂ ਵੇਚਣਾ ਤੁਹਾਡੇ ਜੀਵਨ ਦਾ ਬਹੁਤ ਵੱਡਾ ਫੈਸਲਾ ਹੈ। ਅਸੀਂ ਹਰ ਕਦਮ ਤੇ ਤੁਹਾਡੇ ਨਾਲ ਇੱਕ ਸੱਚੇ ਗੁਆਂਢੀ ਵਾਂਗ ਖੜ੍ਹਦੇ ਹਾਂ।',
+        'ਘਰ ਖਰੀਦਣਾ ਜਾਂ ਵੇਚਣਾ ਤੁਹਾਡੇ ਜੀਵਨ ਦਾ ਬਹੁਤ ਵੱਡਾ ਫੈਸਲਾ ਹੈ। ਅਸੀਂ ਹਰ ਕਦਮ ਤੇ ਤੁਹਾਡੇ ਨਾਲ ਇੱਕ ਸਮਰਪਿਤ ਮਾਹਿਰ ਵਾਂਗ ਖੜ੍ਹਦੇ ਹਾਂ।',
       whatWeDeliver: 'ਸਾਡੀਆਂ ਸੇਵਾਵਾਂ',
       discussDirectly: 'ਜਾਂ ਸਿੱਧੀ ਗੱਲ ਕਰੋ: (317) 408-9532',
     },
@@ -595,7 +595,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       requestDeals: 'ਆਫ-ਮਾਰਕੀਟ ਨਿਵੇਸ਼ ਸੌਦਿਆਂ ਦੀ ਸੂਚੀ ਮੰਗੋ',
     },
     trust: {
-      kicker: '05. ਗੁਆਂਢੀ ਰੀਅਲਟਰ ਦਾ ਵਾਅਦਾ',
+      kicker: '05. ਸਾਡੀ ਇਮਾਨਦਾਰੀ ਅਤੇ ਭਰੋਸੇ ਦਾ ਵਾਅਦਾ',
       title: 'ਇਮਾਨਦਾਰੀ ਵਿੱਚ ਜੜ੍ਹਾਂ। ਜੋ ਤੁਹਾਡੇ ਲਈ ਜ਼ਰੂਰੀ ਹੈ, ਉਹੀ ਸਾਡਾ ਟੀਚਾ।',
       subtitle:
         'ਅਸੀਂ ਕਿਸੇ ਜਲਦਬਾਜ਼ੀ ਜਾਂ ਦਬਾਅ ਵਾਲੀ ਵਿਕਰੀ ਵਿੱਚ ਯਕੀਨ ਨਹੀਂ ਰੱਖਦੇ—ਸਿਰਫ਼ ਪਾਰਦਰਸ਼ੀ ਸਲਾਹ ਅਤੇ ਪਰਿਵਾਰਕ ਤਸੱਲੀ।',
@@ -620,7 +620,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       askOnline: 'ਆਨਲਾਈਨ ਪੁੱਛੋ',
     },
     contact: {
-      kicker: '06. ਆਪਣੇ ਗੁਆਂਢੀ ਰੀਅਲਟਰ ਨਾਲ ਜੁੜੋ',
+      kicker: '06. ਆਪਣੇ ਰੀਅਲ ਅਸਟੇਟ ਸਲਾਹਕਾਰ ਨਾਲ ਜੁੜੋ',
       title: 'ਆਓ ਗੱਲਬਾਤ ਸ਼ੁਰੂ ਕਰੀਏ',
       subtitle: 'ਚਾਹੇ ਕਿਸੇ ਸਕੂਲ ਬਾਰੇ ਮਾਮੂਲੀ ਜਾਣਕਾਰੀ ਚਾਹੀਦੀ ਹੈ ਜਾਂ ਘਰ ਵੇਚਣ ਦੀ ਪੂਰੀ ਸਕੀਮ—ਕੌਰ ਤੁਹਾਡੀ ਸੇਵਾ ਵਿੱਚ ਹਾਜ਼ਰ ਹੈ।',
       directLine: 'ਸਿੱਧਾ ਨੰਬਰ',
@@ -635,7 +635,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       submitButton: 'ਸਲਾਹ ਬੇਨਤੀ ਭੇਜੋ',
     },
     footer: {
-      slogan: 'ਤੁਹਾਡਾ ਆਪਣਾ ਗੁਆਂਢੀ ਰੀਅਲਟਰ · ਇੰਡੀਆਨਾ',
+      slogan: 'ਤੁਹਾਡਾ ਭਰੋਸੇਮੰਦ ਰੀਅਲਟਰ · ਇੰਡੀਆਨਾ',
       servicesHeader: 'ਸੇਵਾਵਾਂ',
       communitiesHeader: 'ਮੁੱਖ ਇਲਾਕੇ',
       connectHeader: 'ਸਿੱਧਾ ਸੰਪਰਕ',
