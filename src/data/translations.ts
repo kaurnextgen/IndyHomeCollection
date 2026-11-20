@@ -174,7 +174,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     },
     hero: {
       kicker: 'Indiana Residential & Investment Real Estate',
-      headline: 'Your Trusted Indiana Real Estate Concierge in Every Move.',
+      headline: 'Your Trusted Indiana Real Estate Advisor in Every Move.',
       subheadline:
         'Whether you are buying your family dream home, selling for maximum return, investing in reliable Midwest cash flow, or relocating to the Hoosier State—we deliver transparent, dedicated local guidance with zero pressure.',
       callCta: 'Call (317) 408-9532',

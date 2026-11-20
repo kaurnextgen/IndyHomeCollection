@@ -49,7 +49,7 @@ export const Hero: React.FC<HeroProps> = ({
             <h1 className="font-luxury-display text-4xl sm:text-5xl lg:text-[3.9rem] font-normal tracking-tight text-white leading-[1.07] text-balance">
               Your Trusted Indiana{' '}
               <span className="block sm:inline font-luxury-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#FFF3D1] to-[#E3BE72] drop-shadow-xs">
-                Real Estate Concierge
+                Real Estate Advisor
               </span>{' '}
               in Every Move.
             </h1>
@@ -207,7 +207,7 @@ export const Hero: React.FC<HeroProps> = ({
                     <div className="space-y-1">
                       <div className="flex items-center gap-1.5">
                         <span className="text-[10px] font-luxury-sans font-semibold tracking-[0.24em] uppercase text-amber-400">
-                          Personal Concierge & Realtor
+                          Personal Advisor & Realtor
                         </span>
                         <span className="text-amber-300 text-xs">·</span>
                         <span className="text-[10px] font-semibold text-emerald-400">Active</span>
