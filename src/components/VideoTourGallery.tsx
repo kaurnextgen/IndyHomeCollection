@@ -39,6 +39,7 @@ export interface VideoTour {
   durationLabel: string;
   resolution: string;
   posterImage: string;
+  videoUrl: string;
   summary: string;
   chapters: { time: number; label: string; description: string }[];
 }
@@ -69,6 +70,7 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
       durationLabel: '3:45',
       resolution: '4K Ultra HD',
       posterImage: ASSET_IMAGES.luxuryEstateLarge,
+      videoUrl: 'https://assets.mixkit.co/videos/47286/47286-720.mp4',
       summary:
         'Full cinematic drone aerial and interior walkthrough of an expansive 6-bedroom European stone manor on 2.4 wooded acres in Zionsville, featuring circular cobblestone motor court, soaring timber trusses, and a resort veranda.',
       chapters: [
@@ -94,6 +96,7 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
       durationLabel: '3:00',
       resolution: '4K Ultra HD',
       posterImage: ASSET_IMAGES.suburbanCarmel,
+      videoUrl: 'https://assets.mixkit.co/videos/36087/36087-720.mp4',
       summary:
         'Walkable to the Carmel Arts & Design District, this bespoke transitional residence highlights warm cedar accents, finished entertaining basement, and custom chef kitchen.',
       chapters: [
@@ -119,6 +122,7 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
       durationLabel: '3:30',
       resolution: '1080p 60fps',
       posterImage: ASSET_IMAGES.largeFamilyBrick,
+      videoUrl: 'https://assets.mixkit.co/videos/29526/29526-720.mp4',
       summary:
         'Complete family walkthrough of a four-sided brick residence near Geist Reservoir with 3-car side garage, daylight basement theater, and spacious tree-lined backyard.',
       chapters: [
@@ -144,6 +148,7 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
       durationLabel: '3:15',
       resolution: '4K Ultra HD',
       posterImage: ASSET_IMAGES.modernNewConstruction,
+      videoUrl: 'https://assets.mixkit.co/videos/25991/25991-720.mp4',
       summary:
         'Tour a brand-new 2026 build in Westfield showcasing crisp board-and-batten siding, black architectural windows, 10-foot ceilings, and high-performance energy features.',
       chapters: [
@@ -169,6 +174,7 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
       durationLabel: '2:25',
       resolution: '1080p 60fps',
       posterImage: ASSET_IMAGES.cozySmallHome,
+      videoUrl: 'https://assets.mixkit.co/videos/5717/5717-720.mp4',
       summary:
         'Charming, low-maintenance single-story home tour with rocking-chair front porch, updated butcher-block kitchen, and landscaped perennial flowerbeds in Hendricks County.',
       chapters: [
@@ -194,6 +200,7 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
       durationLabel: '2:50',
       resolution: '4K Ultra HD',
       posterImage: ASSET_IMAGES.modernInterior,
+      videoUrl: 'https://assets.mixkit.co/videos/36087/36087-720.mp4',
       summary:
         'Interior architectural tour showcasing open-concept living, floor-to-ceiling windows, natural linen aesthetics, and designer kitchen near top Carmel schools.',
       chapters: [
@@ -218,6 +225,7 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
       durationLabel: '3:20',
       resolution: '4K Ultra HD',
       posterImage: ASSET_IMAGES.brownsburgHome,
+      videoUrl: 'https://assets.mixkit.co/videos/12878/12878-720.mp4',
       summary:
         'Stately Hendricks County custom brick residence featuring two-story limestone entry, soaring vaulted hearth room, luxury kitchen, and mature woodland perimeter.',
       chapters: [
@@ -243,6 +251,7 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
       durationLabel: '4:05',
       resolution: '4K Ultra HD',
       posterImage: ASSET_IMAGES.greenwoodLakefront,
+      videoUrl: 'https://assets.mixkit.co/videos/47286/47286-720.mp4',
       summary:
         'Spectacular waterfront architectural estate on private shoreline with cantilevered sunset party deck, outdoor fire table, and floor-to-ceiling glass panoramic water vistas.',
       chapters: [
@@ -268,6 +277,7 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
       durationLabel: '2:35',
       resolution: '4K Ultra HD',
       posterImage: ASSET_IMAGES.zionsvilleCottage,
+      videoUrl: 'https://assets.mixkit.co/videos/12877/12877-720.mp4',
       summary:
         'Quintessential Zionsville village cottage with cobblestone garden walkway, artisan sage shutters, white oak floors, and walkable access to Main Street.',
       chapters: [
@@ -283,27 +293,82 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
   // Active tour in the cinema player
   const [selectedTour, setSelectedTour] = useState<VideoTour>(videoTours[0]);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
-  const [currentTime, setCurrentTime] = useState<number>(35); // in seconds
-  const [isMuted, setIsMuted] = useState<boolean>(false);
+  const [currentTime, setCurrentTime] = useState<number>(0);
+  const [isMuted, setIsMuted] = useState<boolean>(true);
   const [playbackSpeed, setPlaybackSpeed] = useState<number>(1);
   const [filterCategory, setFilterCategory] = useState<string>('all');
   const [filterCity, setFilterCity] = useState<string>('all');
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Simulated video playback timer
+  // Sync play/pause state with video element
   useEffect(() => {
-    let timer: any;
+    if (!videoRef.current) return;
     if (isPlaying) {
-      timer = setInterval(() => {
-        setCurrentTime((prev) => {
-          if (prev >= selectedTour.durationSeconds) {
-            return 0; // Loop or restart
-          }
-          return prev + 1;
-        });
-      }, 1000 / playbackSpeed);
+      videoRef.current.play().catch(() => {
+        // Autoplay policy fallback: mute and retry
+        if (videoRef.current) {
+          videoRef.current.muted = true;
+          setIsMuted(true);
+          videoRef.current.play().catch(() => {});
+        }
+      });
+    } else {
+      videoRef.current.pause();
     }
-    return () => clearInterval(timer);
-  }, [isPlaying, playbackSpeed, selectedTour.durationSeconds]);
+  }, [isPlaying, selectedTour.id]);
+
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    if (isPlaying) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+    }
+  };
+
+  const toggleMute = () => {
+    const nextMuted = !isMuted;
+    setIsMuted(nextMuted);
+    if (videoRef.current) {
+      videoRef.current.muted = nextMuted;
+    }
+  };
+
+  const handleSpeedToggle = () => {
+    const nextSpeed = playbackSpeed === 1 ? 1.25 : playbackSpeed === 1.25 ? 1.5 : 1;
+    setPlaybackSpeed(nextSpeed);
+    if (videoRef.current) {
+      videoRef.current.playbackRate = nextSpeed;
+    }
+  };
+
+  const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const ratio = Math.max(0, Math.min(1, clickX / rect.width));
+    const targetSec = Math.round(ratio * selectedTour.durationSeconds);
+    setCurrentTime(targetSec);
+    if (videoRef.current && Number.isFinite(videoRef.current.duration) && videoRef.current.duration > 0) {
+      videoRef.current.currentTime = ratio * videoRef.current.duration;
+    }
+  };
+
+  const handleSkip = (seconds: number) => {
+    if (videoRef.current && Number.isFinite(videoRef.current.duration) && videoRef.current.duration > 0) {
+      const step = (seconds / selectedTour.durationSeconds) * videoRef.current.duration;
+      videoRef.current.currentTime = Math.max(0, Math.min(videoRef.current.duration, videoRef.current.currentTime + step));
+    }
+  };
+
+  const handleJumpChapter = (chapterTime: number) => {
+    setCurrentTime(chapterTime);
+    if (videoRef.current && Number.isFinite(videoRef.current.duration) && videoRef.current.duration > 0) {
+      videoRef.current.currentTime = (chapterTime / selectedTour.durationSeconds) * videoRef.current.duration;
+      videoRef.current.play().catch(() => {});
+    }
+    setIsPlaying(true);
+  };
 
   const formatSeconds = (sec: number) => {
     const mins = Math.floor(sec / 60);
@@ -311,13 +376,21 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
     return `${mins}:${remainingSecs < 10 ? '0' : ''}${remainingSecs}`;
   };
 
-  const progressPercent = (currentTime / selectedTour.durationSeconds) * 100;
+  const progressPercent = selectedTour.durationSeconds > 0
+    ? (currentTime / selectedTour.durationSeconds) * 100
+    : 0;
 
-  const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const ratio = Math.max(0, Math.min(1, clickX / rect.width));
-    setCurrentTime(Math.round(ratio * selectedTour.durationSeconds));
+  const handleSelectTour = (tour: VideoTour) => {
+    setSelectedTour(tour);
+    setCurrentTime(0);
+    setIsPlaying(true);
+    setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.play().catch(() => {});
+      }
+    }, 100);
+    document.getElementById('video-tours')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const filteredTours = videoTours.filter((tour) => {
@@ -366,21 +439,31 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
           {/* Main Viewport Screen (Left 8 Cols) */}
           <div className="lg:col-span-8 relative aspect-video bg-black flex flex-col justify-between overflow-hidden group">
             
-            {/* Background Simulated Video Frame */}
-            <img
-              src={selectedTour.posterImage}
-              alt={selectedTour.title}
-              referrerPolicy="no-referrer"
-              className={`w-full h-full object-cover transition-transform duration-1000 ${
-                isPlaying ? 'scale-103' : 'scale-100'
-              }`}
+            {/* Real HD Cinema Video Stream */}
+            <video
+              ref={videoRef}
+              key={selectedTour.id}
+              src={selectedTour.videoUrl}
+              poster={selectedTour.posterImage}
+              playsInline
+              muted={isMuted}
+              loop
+              className="w-full h-full object-cover transition-opacity duration-700"
+              onTimeUpdate={() => {
+                if (videoRef.current && Number.isFinite(videoRef.current.duration) && videoRef.current.duration > 0) {
+                  const progressRatio = videoRef.current.currentTime / videoRef.current.duration;
+                  setCurrentTime(Math.round(progressRatio * selectedTour.durationSeconds));
+                }
+              }}
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40 pointer-events-none" />
 
             {/* Top Bar Overlay */}
-            <div className="relative z-10 p-4 sm:p-6 flex items-start justify-between gap-4">
+            <div className="relative z-10 p-4 sm:p-6 flex items-start justify-between gap-4 pointer-events-none">
               <div className="space-y-1">
-                <span className="text-[10px] font-luxury-sans tracking-widest uppercase text-amber-300 font-semibold bg-black/70 backdrop-blur-sm px-2.5 py-1 rounded border border-[#D4AF37]/40">
+                <span className="text-[10px] font-luxury-sans tracking-widest uppercase text-amber-300 font-semibold bg-black/70 backdrop-blur-sm px-2.5 py-1 rounded border border-[#D4AF37]/40 pointer-events-auto">
                   {selectedTour.resolution} · {selectedTour.categoryLabel}
                 </span>
                 <h3 className="font-luxury-serif text-xl sm:text-3xl font-normal text-white drop-shadow-md">
@@ -402,7 +485,7 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
 
             {/* Center Play/Pause Large Action */}
             <button
-              onClick={() => setIsPlaying(!isPlaying)}
+              onClick={togglePlay}
               className="absolute inset-0 m-auto w-16 h-16 rounded-full bg-gold-metallic text-slate-950 border border-[#D4AF37] flex items-center justify-center shadow-luxury-glow transition-transform hover:scale-110 active:scale-95 cursor-pointer z-20"
               aria-label={isPlaying ? 'Pause video tour' : 'Play video tour'}
             >
@@ -432,14 +515,14 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
               <div className="flex items-center justify-between text-xs text-slate-300">
                 <div className="flex items-center gap-3 sm:gap-4">
                   <button
-                    onClick={() => setIsPlaying(!isPlaying)}
+                    onClick={togglePlay}
                     className="hover:text-white transition-colors cursor-pointer"
                   >
                     {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
                   </button>
 
                   <button
-                    onClick={() => setCurrentTime((prev) => Math.max(0, prev - 10))}
+                    onClick={() => handleSkip(-10)}
                     className="hover:text-white transition-colors cursor-pointer"
                     title="Rewind 10s"
                   >
@@ -447,7 +530,7 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
                   </button>
 
                   <button
-                    onClick={() => setCurrentTime((prev) => Math.min(selectedTour.durationSeconds, prev + 10))}
+                    onClick={() => handleSkip(10)}
                     className="hover:text-white transition-colors cursor-pointer"
                     title="Forward 10s"
                   >
@@ -455,8 +538,9 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
                   </button>
 
                   <button
-                    onClick={() => setIsMuted(!isMuted)}
+                    onClick={toggleMute}
                     className="hover:text-white transition-colors cursor-pointer flex items-center gap-1"
+                    title={isMuted ? 'Unmute' : 'Mute'}
                   >
                     {isMuted ? <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4" />}
                   </button>
@@ -469,7 +553,7 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
                 <div className="flex items-center gap-3">
                   {/* Speed toggle */}
                   <button
-                    onClick={() => setPlaybackSpeed((s) => (s === 1 ? 1.25 : s === 1.25 ? 1.5 : 1))}
+                    onClick={handleSpeedToggle}
                     className="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-[11px] font-mono cursor-pointer transition-colors"
                   >
                     {playbackSpeed}x
@@ -507,10 +591,7 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
                   return (
                     <button
                       key={idx}
-                      onClick={() => {
-                        setCurrentTime(chap.time);
-                        setIsPlaying(true);
-                      }}
+                      onClick={() => handleJumpChapter(chap.time)}
                       className={`w-full p-2.5 rounded-lg text-left text-xs transition-all cursor-pointer flex items-start gap-2.5 ${
                         isActive
                           ? 'bg-amber-500/20 border border-amber-500/50 text-white font-medium'
@@ -613,13 +694,7 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
               return (
                 <div
                   key={tour.id}
-                  onClick={() => {
-                    setSelectedTour(tour);
-                    setCurrentTime(0);
-                    setIsPlaying(true);
-                    // Smooth scroll to master player
-                    document.getElementById('video-tours')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
+                  onClick={() => handleSelectTour(tour)}
                   className={`bg-slate-900 rounded-xl border transition-all duration-300 overflow-hidden group cursor-pointer flex flex-col justify-between hover-card-float ${
                     isSelected
                       ? 'border-amber-500 ring-2 ring-amber-500/30 shadow-lg'
