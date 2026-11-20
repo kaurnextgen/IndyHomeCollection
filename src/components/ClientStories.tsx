@@ -110,6 +110,146 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({
         'With elderly parents living with us, we needed an estate with a zero-step main level suite and peaceful wooded acreage near premier medical facilities. They used their local network to find an off-market custom stone residence before it hit the public MLS. Her quiet, firm negotiation saved us from a multi-bid scenario and secured clean title in under a month.',
       closingStatement: 'Private off-market closing completed in 28 days with full title insurance and boundary survey.',
     },
+    {
+      id: 'gill-westfield',
+      clientName: 'Jaspreet & Kulwinder Gill',
+      location: 'Westfield, IN',
+      county: 'Hamilton County',
+      transactionType: 'New Construction Estate Closing',
+      purchasePrice: '$540,000 Purchase',
+      image: ASSET_IMAGES.modernNewConstruction,
+      languageSupport: 'Fluent Punjabi & English Consultation',
+      headline: 'Guided our lot selection and builder upgrades in Westfield with tremendous insight.',
+      story:
+        'We wanted a home close to Grand Park with an open kitchen layout and east-facing morning sunshine. She reviewed the builder contract line by line, helped us choose structural upgrades that actually hold resale value, and negotiated builder credits. Her patience and deep knowledge of Hamilton County made this huge milestone stress-free for our family.',
+      closingStatement: 'Closed with $15,000 builder concession in Westfield Washington Schools.',
+    },
+    {
+      id: 'rao-fishers',
+      clientName: 'Amit & Priyanka Rao',
+      location: 'Fishers, IN',
+      county: 'Hamilton County',
+      transactionType: 'Luxury Waterfront Community Closing',
+      purchasePrice: '$675,000 Purchase',
+      image: ASSET_IMAGES.suburbanCarmel,
+      languageSupport: 'Fluent Hindi & English Consultation',
+      headline: 'Found us our dream home near Geist with space for pooja room and in-laws.',
+      story:
+        'Moving our family from Chicago to Fishers, we needed a home with a dedicated first-floor prayer and pooja space, plus privacy for visiting parents. She showed us 8 properties on FaceTime HD before we even flew in, pointed out HOA rules on exterior additions, and negotiated $18,000 below listing price.',
+      closingStatement: 'Smooth 30-day closing in HSE School District with complete repair escrow.',
+    },
+    {
+      id: 'grewal-plainfield',
+      clientName: 'Satnam & Ravinder Grewal',
+      location: 'Plainfield, IN',
+      county: 'Hendricks County',
+      transactionType: 'Custom Brick Residence Purchase',
+      purchasePrice: '$430,000 Purchase',
+      image: ASSET_IMAGES.largeFamilyBrick,
+      languageSupport: 'Fluent Punjabi & English Consultation',
+      headline: 'Honest advice that saved us from making an expensive mistake on a property.',
+      story:
+        'We were ready to put an offer on a house in Plainfield, but she inspected the crawl space and noticed foundation settlement issues that we completely missed. Instead of rushing for a quick commission, she advised us to walk away and found us an even better brick home with a massive backyard 2 weeks later. That genuine honesty is rare.',
+      closingStatement: 'Closed with clean title, zero structural concerns, and immediate occupancy.',
+    },
+    {
+      id: 'chawla-carmel',
+      clientName: 'Dr. Sandeep & Anjali Chawla',
+      location: 'Carmel, IN',
+      county: 'Hamilton County',
+      transactionType: 'Executive Luxury Residence Closing',
+      purchasePrice: '$920,000 Purchase',
+      image: ASSET_IMAGES.luxuryEstateLarge,
+      languageSupport: 'Fluent Hindi & English Consultation',
+      headline: 'Exceptional white-glove advisory for our busy physician schedules.',
+      story:
+        'Between hospital on-call hours and raising three school-age kids, house hunting seemed impossible. She curated private evening walkthroughs, coordinated with our private wealth lender, and handled every inspection negotiation with meticulous attention to detail. Her representation was nothing short of perfection.',
+      closingStatement: 'Flawless private closing in West Carmel within 25 days.',
+    },
+    {
+      id: 'brar-brownsburg',
+      clientName: 'Manpreet & Simranjit Brar',
+      location: 'Brownsburg, IN',
+      county: 'Hendricks County',
+      transactionType: 'Family Move-Up Home Closing',
+      purchasePrice: '$485,000 Purchase',
+      image: ASSET_IMAGES.brownsburgHome,
+      languageSupport: 'Fluent Punjabi & English Consultation',
+      headline: 'Explained every Indiana real estate law in Punjabi so my parents felt 100% included.',
+      story:
+        'Buying our second home in Brownsburg, it was vital that my elderly parents felt part of every decision. She patiently explained property tax caps, homestead exemptions, and title vesting in fluent Punjabi. She treated us like family from day one.',
+      closingStatement: 'Keys in hand with 4-star Brownsburg schools and top-tier warranty.',
+    },
+    {
+      id: 'venkat-zionsville',
+      clientName: 'Karthik & Deepa Venkataraman',
+      location: 'Zionsville, IN',
+      county: 'Boone County',
+      transactionType: 'Wooded Village Residence Closing',
+      purchasePrice: '$850,000 Purchase',
+      image: ASSET_IMAGES.zionsvilleCottage,
+      languageSupport: 'Fluent English & Hindi Consultation',
+      headline: 'Won in a competitive multi-bid situation without overpaying appraisal.',
+      story:
+        'Zionsville homes in our target neighborhood were receiving multiple offers within 48 hours. Her tactical offer structuring—including appraisal gap protection and flexible seller lease-back—won us the home against four other competing bids without exceeding our budget. Her negotiation strategy is unmatched.',
+      closingStatement: 'Secured accepted contract in 24 hours in Zionsville Community Schools.',
+    },
+    {
+      id: 'sandhu-greenwood',
+      clientName: 'Jagmohan & Kamaljit Sandhu',
+      location: 'Greenwood, IN',
+      county: 'Johnson County',
+      transactionType: 'Center Grove Single-Family Closing',
+      purchasePrice: '$510,000 Purchase',
+      image: ASSET_IMAGES.greenwoodLakefront,
+      languageSupport: 'Fluent Punjabi & Hindi Consultation',
+      headline: 'The most trusted real estate partner for our Indian family in Central Indiana.',
+      story:
+        'We moved from New Jersey to Greenwood to be closer to our extended Punjabi family and the Gurdwara. She helped us compare Center Grove vs. Avon, analyzed recent neighborhood comps, and negotiated a brand new HVAC system replacement before closing. We could not be happier with our decision.',
+      closingStatement: 'Closed on schedule with $9,500 seller repair credits in Center Grove.',
+    },
+    {
+      id: 'deshmukh-mccordsville',
+      clientName: 'Rohan & Meera Deshmukh',
+      location: 'McCordsville, IN',
+      county: 'Hancock County',
+      transactionType: '5-Bedroom Residence near Geist Closing',
+      purchasePrice: '$460,000 Purchase',
+      image: ASSET_IMAGES.heroEstate,
+      languageSupport: 'Fluent Hindi & Marathi Consultation',
+      headline: 'Unbeatable neighborhood knowledge of the booming McCordsville corridor.',
+      story:
+        'McCordsville is growing fast, and she knew exactly which subdivisions have planned town-center walkability, lower tax assessments, and premier Mt. Vernon schools. She helped us secure a premium corner-lot home with a finished walkout basement that our family absolutely loves.',
+      closingStatement: 'Closed with 2.5% builder rate buydown savings and lifetime warranty.',
+    },
+    {
+      id: 'toor-noblesville',
+      clientName: 'Navdeep & Sukhmani Toor',
+      location: 'Noblesville, IN',
+      county: 'Hamilton County',
+      transactionType: 'Custom Residence Purchase',
+      purchasePrice: '$525,000 Purchase',
+      image: ASSET_IMAGES.noblesvilleCustom,
+      languageSupport: 'Fluent Punjabi & English Consultation',
+      headline: 'Patient, culturally attentive, and always available on direct phone call.',
+      story:
+        'Unlike large corporate teams where you get passed between junior assistants, whenever we called (317) 408-9532, she answered directly. She spent evenings discussing earnest money safety and radon mitigation. She is truly a trusted partner for any Indian family moving to Indiana.',
+      closingStatement: 'Closed smoothly with full radon remediation completed by seller.',
+    },
+    {
+      id: 'malhotra-avon',
+      clientName: 'Vikram & Neha Malhotra',
+      location: 'Avon, IN',
+      county: 'Hendricks County',
+      transactionType: 'First-Time US Home Purchase Closing',
+      purchasePrice: '$390,000 Purchase',
+      image: ASSET_IMAGES.cozySmallHome,
+      languageSupport: 'Fluent Hindi & English Consultation',
+      headline: 'Made our first American home buying journey an absolute joy.',
+      story:
+        'Coming from Delhi on an H-1B visa, buying our first US property felt daunting with mortgage underwriting and HOA rules. She walked us step-by-step through every document, recommended an outstanding local lender who understood visa guidelines, and negotiated all closing costs covered by the seller.',
+      closingStatement: 'Closed with zero out-of-pocket closing costs in Avon.',
+    },
   ];
 
   // Auto-rotation every 8 seconds unless hovered
@@ -282,8 +422,12 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({
                 </div>
 
                 {/* Arrow Controls & Indicators */}
-                <div className="flex items-center gap-3">
-                  <div className="flex gap-1.5 mr-2">
+                <div className="flex items-center gap-2.5 sm:gap-3">
+                  <span className="text-[11px] font-mono font-bold text-amber-300/90 px-2.5 py-1 rounded-md bg-[#131A29] border border-[#D4AF37]/30">
+                    {currentIndex + 1} / {stories.length}
+                  </span>
+
+                  <div className="hidden sm:flex gap-1 max-w-[140px] overflow-hidden">
                     {stories.map((_, idx) => (
                       <button
                         key={idx}
@@ -291,8 +435,8 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({
                         aria-label={`Go to slide ${idx + 1}`}
                         className={`h-1.5 rounded-full transition-all cursor-pointer ${
                           currentIndex === idx
-                            ? 'w-6 bg-gold-metallic border border-[#D4AF37]'
-                            : 'w-2 bg-slate-700 hover:bg-[#D4AF37]/50'
+                            ? 'w-4 bg-gold-metallic border border-[#D4AF37]'
+                            : 'w-1.5 bg-slate-700 hover:bg-[#D4AF37]/50'
                         }`}
                       />
                     ))}

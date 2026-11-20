@@ -276,6 +276,146 @@ const DEFAULT_REVIEWS: ReviewItem[] = [
     status: 'approved',
     date: '2026-11-04',
   },
+  {
+    id: 'rev-4',
+    clientName: 'Jaspreet & Kulwinder Gill',
+    location: 'Westfield, IN',
+    county: 'Hamilton County',
+    transactionType: 'New Construction Purchase ($540K)',
+    purchasePrice: '$540,000',
+    headline: '“Guided Our Westfield Lot Selection & Builder Upgrades with Tremendous Insight”',
+    story: 'We wanted a home close to Grand Park with an open layout and east-facing morning sunshine. She reviewed the builder contract line by line, helped us choose structural upgrades that hold resale value, and negotiated $15,000 in builder credits.',
+    closingStatement: '“Closed on time with full builder concessions in Westfield Washington Schools.”',
+    rating: 5,
+    status: 'approved',
+    date: '2026-11-06',
+  },
+  {
+    id: 'rev-5',
+    clientName: 'Amit & Priyanka Rao',
+    location: 'Fishers, IN',
+    county: 'Hamilton County',
+    transactionType: 'Luxury Waterfront Community ($675K)',
+    purchasePrice: '$675,000',
+    headline: '“Found Us Our Dream Home Near Geist with Space for Pooja Room & In-Laws”',
+    story: 'Moving from Chicago to Fishers, we needed a home with a dedicated first-floor prayer room and privacy for parents. She showed us 8 properties on FaceTime HD before we flew in and negotiated $18,000 below listing price.',
+    closingStatement: '“Smooth 30-day closing in HSE School District with complete repair escrow.”',
+    rating: 5,
+    status: 'approved',
+    date: '2026-11-08',
+  },
+  {
+    id: 'rev-6',
+    clientName: 'Satnam & Ravinder Grewal',
+    location: 'Plainfield, IN',
+    county: 'Hendricks County',
+    transactionType: 'Custom Brick Residence Purchase ($430K)',
+    purchasePrice: '$430,000',
+    headline: '“Honest Advice That Saved Us from an Expensive Foundation Mistake”',
+    story: 'We were ready to offer on a house in Plainfield, but she inspected the crawl space and noticed foundation settlement issues. She honestly advised us to walk away and found us an even better brick home with a massive backyard 2 weeks later.',
+    closingStatement: '“Rare genuine honesty and total commitment to client safety.”',
+    rating: 5,
+    status: 'approved',
+    date: '2026-11-10',
+  },
+  {
+    id: 'rev-7',
+    clientName: 'Dr. Sandeep & Anjali Chawla',
+    location: 'Carmel, IN',
+    county: 'Hamilton County',
+    transactionType: 'Executive Luxury Residence ($920K)',
+    purchasePrice: '$920,000',
+    headline: '“Exceptional White-Glove Advisory for Our Busy Physician Schedules”',
+    story: 'Between hospital shifts and raising three kids, house hunting seemed impossible. She curated private twilight walkthroughs, coordinated with our private wealth lender, and handled inspection negotiations with meticulous detail.',
+    closingStatement: '“Flawless private closing in West Carmel within 25 days.”',
+    rating: 5,
+    status: 'approved',
+    date: '2026-11-11',
+  },
+  {
+    id: 'rev-8',
+    clientName: 'Manpreet & Simranjit Brar',
+    location: 'Brownsburg, IN',
+    county: 'Hendricks County',
+    transactionType: 'Move-Up Family Home Purchase ($485K)',
+    purchasePrice: '$485,000',
+    headline: '“Explained Every Indiana Real Estate Law in Punjabi for My Parents”',
+    story: 'Buying our second home in Brownsburg, it was vital that my elderly parents felt part of every decision. She patiently explained property tax caps, homestead exemptions, and title vesting in fluent Punjabi.',
+    closingStatement: '“Keys in hand with 4-star Brownsburg schools and top-tier warranty.”',
+    rating: 5,
+    status: 'approved',
+    date: '2026-11-12',
+  },
+  {
+    id: 'rev-9',
+    clientName: 'Karthik & Deepa Venkataraman',
+    location: 'Zionsville, IN',
+    county: 'Boone County',
+    transactionType: 'Wooded Village Residence ($850K)',
+    purchasePrice: '$850,000',
+    headline: '“Won in a Multi-Bid Situation Without Overpaying the Bank Appraisal”',
+    story: 'Zionsville homes were receiving multiple offers within 48 hours. Her tactical offer structuring won us the home against four other competing bids without exceeding our budget. Her negotiation strategy is unmatched.',
+    closingStatement: '“Secured accepted contract in 24 hours in Zionsville Community Schools.”',
+    rating: 5,
+    status: 'approved',
+    date: '2026-11-14',
+  },
+  {
+    id: 'rev-10',
+    clientName: 'Jagmohan & Kamaljit Sandhu',
+    location: 'Greenwood, IN',
+    county: 'Johnson County',
+    transactionType: 'Center Grove Single-Family ($510K)',
+    purchasePrice: '$510,000',
+    headline: '“The Best Realtor for the Indian Community in Central Indiana”',
+    story: 'We moved from New Jersey to Greenwood to be closer to extended family and the Gurdwara. She helped us compare Center Grove vs. Avon, analyzed comps, and negotiated a brand new HVAC system before closing.',
+    closingStatement: '“Closed on schedule with $9,500 seller repair credits in Center Grove.”',
+    rating: 5,
+    status: 'approved',
+    date: '2026-11-15',
+  },
+  {
+    id: 'rev-11',
+    clientName: 'Rohan & Meera Deshmukh',
+    location: 'McCordsville, IN',
+    county: 'Hancock County',
+    transactionType: '5-Bedroom Residence near Geist ($460K)',
+    purchasePrice: '$460,000',
+    headline: '“Unbeatable Neighborhood Knowledge of the Booming McCordsville Corridor”',
+    story: 'McCordsville is growing fast, and she knew exactly which subdivisions have planned town-center walkability, lower tax assessments, and premier Mt. Vernon schools. She secured us a premium corner-lot home with a finished walkout basement.',
+    closingStatement: '“Closed with 2.5% builder rate buydown savings and lifetime warranty.”',
+    rating: 5,
+    status: 'approved',
+    date: '2026-11-16',
+  },
+  {
+    id: 'rev-12',
+    clientName: 'Navdeep & Sukhmani Toor',
+    location: 'Noblesville, IN',
+    county: 'Hamilton County',
+    transactionType: 'Custom Residence Purchase ($525K)',
+    purchasePrice: '$525,000',
+    headline: '“Patient, Culturally Attentive, and Always Available on Direct Phone Call”',
+    story: 'Unlike large corporate teams where you get passed between assistants, whenever we called (317) 408-9532, she answered directly. She spent evenings discussing earnest money safety and radon mitigation.',
+    closingStatement: '“Closed smoothly with full radon remediation completed by seller.”',
+    rating: 5,
+    status: 'approved',
+    date: '2026-11-17',
+  },
+  {
+    id: 'rev-13',
+    clientName: 'Vikram & Neha Malhotra',
+    location: 'Avon, IN',
+    county: 'Hendricks County',
+    transactionType: 'First-Time US Home Purchase ($390K)',
+    purchasePrice: '$390,000',
+    headline: '“Made Our First American Home Buying Journey an Absolute Joy”',
+    story: 'Coming from Delhi on an H-1B visa, buying our first US property felt daunting. She walked us step-by-step through every document, recommended an outstanding lender who understood visa guidelines, and negotiated all closing costs covered by the seller.',
+    closingStatement: '“Closed with zero out-of-pocket closing costs in Avon.”',
+    rating: 5,
+    status: 'approved',
+    date: '2026-11-18',
+  },
 ];
 
 // Initial Team Members for Super Admin Roster
@@ -547,7 +687,17 @@ export const adminStore = {
   getReviews(): ReviewItem[] {
     try {
       const data = localStorage.getItem(STORAGE_KEYS.REVIEWS);
-      if (data) return JSON.parse(data);
+      if (data) {
+        const parsed = JSON.parse(data);
+        if (parsed.length < DEFAULT_REVIEWS.length) {
+          const existingIds = new Set(parsed.map((r: ReviewItem) => r.id));
+          const missing = DEFAULT_REVIEWS.filter((r) => !existingIds.has(r.id));
+          const merged = [...parsed, ...missing];
+          this.saveReviews(merged);
+          return merged;
+        }
+        return parsed;
+      }
     } catch (e) {
       console.error(e);
     }
