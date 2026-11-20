@@ -8,7 +8,6 @@ import {
   CheckCircle2,
   X,
   MessageSquarePlus,
-  Key,
   Languages,
 } from 'lucide-react';
 import { ASSET_IMAGES } from '../assets/imagesMap';
@@ -175,11 +174,6 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 text-xs font-luxury-sans font-semibold tracking-[0.2em] uppercase text-amber-400 mb-2">
-              <span className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37]" />
-              <Key className="w-3.5 h-3.5 text-amber-400" />
-              <span>{t.stories.kicker}</span>
-            </div>
             <h2 className="font-luxury-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white tracking-tight text-balance">
               {t.stories.title}
             </h2>
