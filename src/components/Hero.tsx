@@ -47,11 +47,11 @@ export const Hero: React.FC<HeroProps> = ({
 
             {/* Main Headline with Haute Typographic Contrast */}
             <h1 className="font-luxury-display text-4xl sm:text-5xl lg:text-[3.9rem] font-normal tracking-tight text-white leading-[1.07] text-balance">
-              Your Trusted Indiana &{' '}
+              Your Trusted Indiana{' '}
               <span className="block sm:inline font-luxury-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#FFF3D1] to-[#E3BE72] drop-shadow-xs">
-                McCordsville
+                Real Estate Concierge
               </span>{' '}
-              Real Estate Concierge.
+              in Every Move.
             </h1>
 
             {/* Designer Accolades Ribbon (Luxury Multi-Stat Row) */}
@@ -85,7 +85,7 @@ export const Hero: React.FC<HeroProps> = ({
                   <span>Central IN</span>
                 </div>
                 <div className="text-[10px] font-luxury-sans uppercase tracking-wider text-slate-300 font-semibold mt-0.5 truncate">
-                  Carmel · Fishers · McCordsville
+                  Carmel · Fishers · Zionsville
                 </div>
               </div>
             </div>
