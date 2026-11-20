@@ -143,7 +143,7 @@ export const IndianaCommunities: React.FC<IndianaCommunitiesProps> = ({
                   onCommunityInquire(market);
                 }
               }}
-              className="relative bg-[#0E1422]/95 rounded-2xl border border-[#D4AF37]/25 hover:border-[#D4AF37] transition-all duration-300 hover:-translate-y-1 hover:shadow-luxury-card flex flex-col justify-between overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] text-white"
+              className="relative bg-[#0E1422]/95 rounded-2xl border border-[#D4AF37]/25 hover:border-[#D4AF37] hover-card-float transition-all duration-500 flex flex-col justify-between overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] text-white"
             >
               {/* Home Picture Banner */}
               <div className="relative h-48 w-full overflow-hidden bg-slate-900">
@@ -151,17 +151,17 @@ export const IndianaCommunities: React.FC<IndianaCommunitiesProps> = ({
                   src={communityImages[market.id] || ASSET_IMAGES.suburbanCarmel}
                   alt={`Homes and neighborhoods in ${market.name}, Indiana`}
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out hover-image-zoom"
                   onError={(e) => {
                     (e.target as HTMLElement).style.display = 'none';
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
                 <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs">
-                  <span className="font-luxury-sans uppercase tracking-wider font-semibold px-2.5 py-1 rounded bg-[#0B0F17]/80 backdrop-blur-sm text-[10px] border border-[#D4AF37]/40 text-[#F6EBD7]">
+                  <span className="font-luxury-sans uppercase tracking-wider font-semibold px-2.5 py-1 rounded bg-[#0B0F17]/90 backdrop-blur-sm text-[10px] border border-[#D4AF37]/40 text-[#F6EBD7]">
                     {market.county}
                   </span>
-                  <span className="font-luxury-serif tabular-nums px-2.5 py-1 rounded bg-slate-950 text-amber-300 border border-[#D4AF37]/60 text-xs shadow-sm">
+                  <span className="font-luxury-serif tabular-nums px-2.5 py-1 rounded bg-slate-950 text-amber-300 border border-[#D4AF37]/60 text-xs shadow-sm animate-pulse-subtle">
                     Med. {market.medianPrice}
                   </span>
                 </div>
@@ -171,7 +171,7 @@ export const IndianaCommunities: React.FC<IndianaCommunitiesProps> = ({
                 
                 {/* Header: Title */}
                 <div>
-                  <h3 className="font-luxury-serif text-2xl font-normal text-white group-hover:text-amber-300 transition-colors duration-200">
+                  <h3 className="font-luxury-serif text-2xl font-normal text-white group-hover:text-amber-300 group-hover:translate-x-1 transition-all duration-300">
                     {market.name}
                   </h3>
                   <p className="text-[11px] font-luxury-sans uppercase tracking-wider font-semibold text-amber-400 mt-0.5">

@@ -356,7 +356,7 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
           {filteredProperties.map((home) => (
             <div
               key={home.id}
-              className="bg-[#0E1422]/95 rounded-2xl border border-[#D4AF37]/25 shadow-luxury-glow hover:shadow-luxury-card hover:border-[#D4AF37] transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1 text-white"
+              className="bg-[#0E1422]/95 rounded-2xl border border-[#D4AF37]/25 shadow-luxury-glow hover:shadow-luxury-card hover:border-[#D4AF37] hover-card-float transition-all duration-500 flex flex-col justify-between overflow-hidden group text-white"
             >
               <div>
                 {/* Photo & Video Trigger Container */}
@@ -365,19 +365,19 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
                     src={home.image}
                     alt={home.title}
                     referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out hover-image-zoom"
                     onError={(e) => {
                       (e.target as HTMLElement).style.display = 'none';
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none" />
 
                   {/* Top Status & Location Badges */}
                   <div className="absolute top-3 left-3 right-3 flex items-center justify-between text-xs">
                     <span className="px-2.5 py-1 rounded-md bg-[#0B0F17]/90 backdrop-blur-sm text-[#F6EBD7] font-luxury-sans uppercase tracking-wider font-semibold text-[10px] shadow-sm border border-[#D4AF37]/40">
                       {home.status}
                     </span>
-                    <span className="px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-sm text-white text-[11px] font-medium flex items-center gap-1 font-body-read">
+                    <span className="px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-sm text-white text-[11px] font-medium flex items-center gap-1 font-body-read border border-white/10">
                       <MapPin className="w-3 h-3 text-[#D4AF37]" />
                       {home.city}, IN
                     </span>
@@ -389,7 +389,7 @@ export const PropertiesShowcase: React.FC<PropertiesShowcaseProps> = ({
                       setActiveVideoProperty(home);
                       setIsPlaying(true);
                     }}
-                    className="absolute inset-0 m-auto w-12 h-12 rounded-full bg-slate-950/85 hover:bg-slate-950 text-amber-300 border border-[#D4AF37]/60 flex items-center justify-center shadow-luxury-glow transition-transform hover:scale-110 active:scale-95 cursor-pointer z-10"
+                    className="absolute inset-0 m-auto w-12 h-12 rounded-full bg-slate-950/85 hover:bg-slate-950 text-amber-300 border border-[#D4AF37]/60 hover:border-[#F6EBD7] flex items-center justify-center shadow-luxury-glow transition-all hover:scale-120 active:scale-95 cursor-pointer z-10 animate-pulse-subtle"
                     title="Watch HD Virtual Walkthrough Video"
                     aria-label={`Watch video walkthrough for ${home.title}`}
                   >

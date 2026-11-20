@@ -88,19 +88,19 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
         </div>
 
         {/* Dynamic Service Spotlight Bento Card */}
-        <div className="bg-[#0E1422]/95 rounded-3xl border border-[#D4AF37]/25 shadow-luxury-glow overflow-hidden text-white">
+        <div className="bg-[#0E1422]/95 rounded-3xl border border-[#D4AF37]/25 shadow-luxury-glow hover-card-float overflow-hidden text-white transition-all duration-500">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
             
             {/* Left Content Column */}
             <div className="lg:col-span-7 p-6 sm:p-10 lg:p-12 flex flex-col justify-between space-y-8">
               <div className="space-y-4">
                 <div className="inline-flex items-center gap-2 text-xs font-luxury-sans font-semibold text-amber-400 uppercase tracking-widest">
-                  <span className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37]" />
+                  <span className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37] animate-pulse" />
                   <span>{selectedService.subtitle}</span>
                 </div>
                 
                 <h3 className="font-luxury-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-white">
-                  {selectedService.title}
+                  <span className="animated-shining-word">{selectedService.title}</span>
                 </h3>
                 
                 <p className="font-body-read text-base sm:text-lg text-slate-300 leading-relaxed font-light">
@@ -114,8 +114,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {selectedService.bullets.map((bullet, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200 font-body-read">
-                        <span className="p-1 rounded-md bg-[#131B2A] text-amber-300 shrink-0 mt-0.5 border border-[#D4AF37]/30">
+                      <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200 font-body-read hover:translate-x-1 transition-transform">
+                        <span className="p-1 rounded-md bg-[#131B2A] text-amber-300 shrink-0 mt-0.5 border border-[#D4AF37]/30 shadow-xs">
                           <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                         </span>
                         <span className="leading-snug">{bullet}</span>
@@ -129,7 +129,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
               <div className="pt-6 border-t border-slate-800 flex flex-wrap items-center gap-4">
                 <button
                   onClick={() => handleAction(selectedService.actionType, selectedService.title)}
-                  className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl bg-slate-900 text-white font-luxury-sans uppercase tracking-wider font-semibold text-xs hover:bg-slate-850 border border-[#D4AF37] shadow-luxury-glow transition-all active:scale-95 cursor-pointer"
+                  className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl bg-slate-900 text-white font-luxury-sans uppercase tracking-wider font-semibold text-xs hover:bg-slate-850 border border-[#D4AF37] shadow-luxury-glow transition-all active:scale-95 cursor-pointer animate-pulse-subtle"
                 >
                   <span>{selectedService.ctaLabel}</span>
                   <ArrowRight className="w-3.5 h-3.5 text-[#D4AF37]" />
@@ -145,15 +145,15 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             </div>
 
             {/* Right Media Column */}
-            <div className="lg:col-span-5 relative min-h-[300px] lg:min-h-full bg-slate-900 border-t lg:border-t-0 lg:border-l border-slate-800">
+            <div className="lg:col-span-5 relative min-h-[300px] lg:min-h-full bg-slate-900 border-t lg:border-t-0 lg:border-l border-slate-800 overflow-hidden group">
               <img
                 src={imagesMap[selectedService.imageKey] || ASSET_IMAGES.suburbanCarmel}
                 alt={selectedService.title}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover max-h-[460px] lg:max-h-none"
+                className="w-full h-full object-cover max-h-[460px] lg:max-h-none hover-image-zoom group-hover:scale-108 transition-transform duration-1000"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-4 left-4 right-4 text-white p-4 rounded-2xl bg-[#0B0F17]/85 backdrop-blur-md border border-[#D4AF37]/40 text-xs font-sans-clean shadow-lg">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-4 left-4 right-4 text-white p-4 rounded-2xl bg-[#0B0F17]/85 backdrop-blur-md border border-[#D4AF37]/40 text-xs font-sans-clean shadow-lg animate-float-slow">
                 <span className="font-semibold text-amber-200 block text-sm">{selectedService.title}</span>
                 <span className="text-white/80 block text-[11px] mt-0.5">
                   Personalized guidance across Carmel, Fishers, Zionsville & Indiana

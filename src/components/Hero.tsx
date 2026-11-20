@@ -48,7 +48,7 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Main Headline with Haute Typographic Contrast */}
             <h1 className="font-luxury-display text-4xl sm:text-5xl lg:text-[3.9rem] font-normal tracking-tight text-white leading-[1.07] text-balance">
               Your Trusted Indiana{' '}
-              <span className="block sm:inline font-luxury-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#FFF3D1] to-[#E3BE72] drop-shadow-xs">
+              <span className="block sm:inline font-luxury-serif italic font-normal animated-shining-word drop-shadow-md">
                 Real Estate Advisor
               </span>{' '}
               in Every Move.
@@ -57,10 +57,10 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Designer Accolades Ribbon (Luxury Multi-Stat Row) */}
             <div className="grid grid-cols-3 gap-2.5 sm:gap-3 py-2">
               {/* Stat 1 */}
-              <div className="p-3 sm:p-3.5 rounded-xl bg-[#0E1422]/90 backdrop-blur-md border border-[#D4AF37]/35 shadow-xs hover:border-[#D4AF37] hover:shadow-luxury-glow transition-all">
+              <div className="p-3 sm:p-3.5 rounded-xl bg-[#0E1422]/90 backdrop-blur-md border border-[#D4AF37]/35 shadow-xs hover:border-[#D4AF37] hover:shadow-luxury-glow hover-card-float transition-all">
                 <div className="flex items-center gap-1.5 text-xs sm:text-sm font-luxury-display font-bold text-white">
                   <span className="text-[#D4AF37]">$</span>
-                  <span>48M+</span>
+                  <span className="animated-gold-glow-word">48M+</span>
                 </div>
                 <div className="text-[10px] font-luxury-sans uppercase tracking-wider text-slate-300 font-semibold mt-0.5">
                   Indiana Homes Closed
@@ -68,10 +68,10 @@ export const Hero: React.FC<HeroProps> = ({
               </div>
 
               {/* Stat 2 */}
-              <div className="p-3 sm:p-3.5 rounded-xl bg-[#0E1422]/90 backdrop-blur-md border border-[#D4AF37]/35 shadow-xs hover:border-[#D4AF37] hover:shadow-luxury-glow transition-all">
+              <div className="p-3 sm:p-3.5 rounded-xl bg-[#0E1422]/90 backdrop-blur-md border border-[#D4AF37]/35 shadow-xs hover:border-[#D4AF37] hover:shadow-luxury-glow hover-card-float transition-all">
                 <div className="flex items-center gap-1 text-xs sm:text-sm font-luxury-display font-bold text-amber-300">
                   <span>100%</span>
-                  <div className="flex text-amber-400 text-[10px] ml-0.5">★★★★★</div>
+                  <div className="flex text-amber-400 text-[10px] ml-0.5 sparkle-twinkle">★★★★★</div>
                 </div>
                 <div className="text-[10px] font-luxury-sans uppercase tracking-wider text-slate-300 font-semibold mt-0.5">
                   Verified 5-Star Trust
@@ -79,9 +79,9 @@ export const Hero: React.FC<HeroProps> = ({
               </div>
 
               {/* Stat 3 */}
-              <div className="p-3 sm:p-3.5 rounded-xl bg-[#0E1422]/90 backdrop-blur-md border border-[#D4AF37]/35 shadow-xs hover:border-[#D4AF37] hover:shadow-luxury-glow transition-all">
+              <div className="p-3 sm:p-3.5 rounded-xl bg-[#0E1422]/90 backdrop-blur-md border border-[#D4AF37]/35 shadow-xs hover:border-[#D4AF37] hover:shadow-luxury-glow hover-card-float transition-all">
                 <div className="flex items-center gap-1 text-xs sm:text-sm font-luxury-display font-bold text-white">
-                  <MapPin className="w-3.5 h-3.5 text-[#D4AF37]" />
+                  <MapPin className="w-3.5 h-3.5 text-[#D4AF37] animate-bounce" />
                   <span>Central IN</span>
                 </div>
                 <div className="text-[10px] font-luxury-sans uppercase tracking-wider text-slate-300 font-semibold mt-0.5 truncate">
@@ -169,10 +169,10 @@ export const Hero: React.FC<HeroProps> = ({
           </div>
 
           {/* Right Column: Architectural Haute Contour Showcase Frame */}
-          <div className="lg:col-span-5 relative">
+          <div className="lg:col-span-5 relative animate-float-slow">
             
             {/* Fine-Art Architectural Double Border */}
-            <div className="relative rounded-3xl p-2 bg-gradient-to-br from-[#D4AF37]/50 via-slate-900 to-[#B38936]/40 shadow-2xl">
+            <div className="relative rounded-3xl p-2 bg-gradient-to-br from-[#D4AF37]/50 via-slate-900 to-[#B38936]/40 shadow-2xl hover-card-float animate-pulse-glow">
               
               <div className="relative rounded-2xl overflow-hidden bg-slate-950 group">
                 {/* Twilight Luxury Estate Image */}
@@ -180,7 +180,7 @@ export const Hero: React.FC<HeroProps> = ({
                   src={ASSET_IMAGES.heroEstate}
                   alt="Modern luxury Indiana residential estate at twilight"
                   referrerPolicy="no-referrer"
-                  className="w-full h-[380px] sm:h-[480px] lg:h-[530px] object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
+                  className="w-full h-[380px] sm:h-[480px] lg:h-[530px] object-cover hover-image-zoom group-hover:scale-110 transition-transform duration-1000 ease-out"
                   onError={(e) => {
                     (e.target as HTMLElement).style.display = 'none';
                   }}
@@ -190,19 +190,19 @@ export const Hero: React.FC<HeroProps> = ({
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-black/35 pointer-events-none" />
 
                 {/* Top-Right Architectural Stamp */}
-                <div className="absolute top-4 right-4 px-3.5 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-[#D4AF37]/60 text-amber-300 text-[10px] font-luxury-sans uppercase tracking-[0.24em] flex items-center gap-2 shadow-lg">
+                <div className="absolute top-4 right-4 px-3.5 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-[#D4AF37]/60 text-amber-300 text-[10px] font-luxury-sans uppercase tracking-[0.24em] flex items-center gap-2 shadow-lg animate-float-horizontal">
                   <span className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37] animate-pulse" />
                   <span>Premier Indiana Portfolio</span>
                 </div>
 
                 {/* Top-Left Live Virtual Tour Tag */}
-                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[9.5px] font-luxury-sans uppercase tracking-wider flex items-center gap-1.5">
+                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[9.5px] font-luxury-sans uppercase tracking-wider flex items-center gap-1.5 shadow-md">
                   <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
                   <span>Verified Virtual Walkthrough</span>
                 </div>
 
                 {/* Floating Glassmorphic Identity Card: INDY HOME COLLECTION */}
-                <div className="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-2xl bg-slate-950/92 backdrop-blur-xl border border-[#D4AF37]/50 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.8)] text-white">
+                <div className="absolute bottom-4 left-4 right-4 p-4 sm:p-5 rounded-2xl bg-slate-950/92 backdrop-blur-xl border border-[#D4AF37]/50 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.8)] text-white animate-float-reverse hover:border-[#D4AF37] transition-all">
                   <div className="flex items-center justify-between gap-3">
                     <div className="space-y-1">
                       <div className="flex items-center gap-1.5">
@@ -210,7 +210,10 @@ export const Hero: React.FC<HeroProps> = ({
                           Personal Advisor & Realtor
                         </span>
                         <span className="text-amber-300 text-xs">·</span>
-                        <span className="text-[10px] font-semibold text-emerald-400">Active</span>
+                        <span className="text-[10px] font-semibold text-emerald-400 flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                          Active
+                        </span>
                       </div>
 
                       {/* Brand Wordmark & Crest */}
@@ -218,7 +221,7 @@ export const Hero: React.FC<HeroProps> = ({
                         <span className="font-luxury-display text-xl sm:text-2xl font-normal tracking-[0.2em] text-white">
                           INDY
                         </span>
-                        <span className="font-luxury-serif italic font-light lowercase text-amber-300 text-lg sm:text-xl">
+                        <span className="font-luxury-serif italic font-light lowercase text-amber-300 text-lg sm:text-xl animated-shining-word">
                           Home
                         </span>
                         <span className="font-luxury-display text-xl sm:text-2xl font-normal tracking-[0.2em] text-white">
@@ -235,7 +238,7 @@ export const Hero: React.FC<HeroProps> = ({
                     {/* Quick Call Action */}
                     <button
                       onClick={onCallClick}
-                      className="p-3.5 rounded-xl bg-gradient-to-br from-[#E3BE72] via-[#D4AF37] to-[#9E7B31] text-slate-950 hover:brightness-110 active:scale-95 transition-all shadow-lg cursor-pointer border border-[#F5E4BE] shrink-0"
+                      className="p-3.5 rounded-xl bg-gradient-to-br from-[#E3BE72] via-[#D4AF37] to-[#9E7B31] text-slate-950 hover:brightness-125 active:scale-95 transition-all shadow-lg cursor-pointer border border-[#F5E4BE] shrink-0 animate-pulse-subtle"
                       title="Direct Private Realtor Line: (317) 408-9532"
                       aria-label="Call Direct Line"
                     >

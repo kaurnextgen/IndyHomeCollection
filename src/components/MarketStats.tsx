@@ -219,7 +219,7 @@ export const MarketStats: React.FC<MarketStatsProps> = ({
               <span>{t.marketStats.kicker}</span>
             </div>
             <h2 className="font-luxury-serif text-3xl sm:text-4xl font-normal text-white tracking-tight">
-              {t.marketStats.title}
+              <span className="animated-shining-word">{t.marketStats.title}</span>
             </h2>
             <p className="text-xs text-slate-300 font-body-read mt-1">
               {t.marketStats.subtitle} · <strong className="text-amber-300 font-semibold">{currentData.focus}</strong>
@@ -254,15 +254,15 @@ export const MarketStats: React.FC<MarketStatsProps> = ({
           {currentData.stats.map((stat) => (
             <div
               key={stat.id}
-              className="bg-[#0E1422]/90 p-5 sm:p-6 rounded-2xl border border-[#D4AF37]/25 shadow-luxury-glow hover:border-[#D4AF37] transition-all duration-300 flex flex-col justify-between space-y-3 group hover:-translate-y-0.5 text-white"
+              className="bg-[#0E1422]/90 p-5 sm:p-6 rounded-2xl border border-[#D4AF37]/25 shadow-luxury-glow hover:border-[#D4AF37] hover-card-float transition-all duration-300 flex flex-col justify-between space-y-3 group text-white"
             >
               <div>
-                <span className="text-[11px] font-luxury-sans uppercase tracking-wider font-semibold text-slate-400 block">
+                <span className="text-[11px] font-luxury-sans uppercase tracking-wider font-semibold text-slate-400 block group-hover:text-amber-300 transition-colors">
                   {t.marketStats[stat.labelKey]}
                 </span>
 
                 {/* Big Luxury Serif Number */}
-                <div className="font-luxury-serif text-3xl sm:text-4xl font-normal text-white tabular-nums tracking-tight mt-1.5 group-hover:text-amber-300 transition-colors">
+                <div className="font-luxury-serif text-3xl sm:text-4xl font-normal text-white tabular-nums tracking-tight mt-1.5 animated-gold-glow-word">
                   {stat.value}
                 </div>
 

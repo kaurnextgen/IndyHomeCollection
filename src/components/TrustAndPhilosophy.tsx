@@ -14,22 +14,22 @@ export const TrustAndPhilosophy: React.FC<TrustAndPhilosophyProps> = ({
   const { t } = useLanguage();
   const commitments = [
     {
-      icon: <HeartHandshake className="w-6 h-6 text-amber-800" />,
+      icon: <HeartHandshake className="w-6 h-6 text-[#D4AF37] group-hover:scale-110 transition-transform" />,
       title: 'Client-First Relationship',
       desc: 'Real estate is about people and their lives, not transactional volume. We prioritize honest counsel, clear expectations, and long-term fiduciary respect over quick commissions.',
     },
     {
-      icon: <PhoneCall className="w-6 h-6 text-amber-800" />,
+      icon: <PhoneCall className="w-6 h-6 text-[#D4AF37] group-hover:scale-110 transition-transform" />,
       title: 'Direct Personal Accessibility',
       desc: 'When you call (317) 408-9532, you reach us directly. No call centers, no outsourced junior assistants. You get dedicated, responsive attention when decisions count.',
     },
     {
-      icon: <Compass className="w-6 h-6 text-amber-800" />,
+      icon: <Compass className="w-6 h-6 text-[#D4AF37] group-hover:rotate-45 transition-transform duration-500" />,
       title: 'Candid Indiana Market Guidance',
       desc: 'We share the good, the bad, and the practical about every neighborhood, school zone, and resale outlook so you move forward with absolute clarity and confidence.',
     },
     {
-      icon: <ShieldCheck className="w-6 h-6 text-amber-800" />,
+      icon: <ShieldCheck className="w-6 h-6 text-[#D4AF37] group-hover:scale-110 transition-transform" />,
       title: 'Uncompromised Fiduciary Care',
       desc: 'From initial consultation through the closing table, we safeguard your earnest money, negotiate firmly on your behalf, and ensure every contract protects your interests.',
     },
@@ -46,7 +46,7 @@ export const TrustAndPhilosophy: React.FC<TrustAndPhilosophyProps> = ({
             <span>{t.trust.kicker}</span>
           </div>
           <h2 className="font-luxury-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white tracking-tight text-balance">
-            {t.trust.title}
+            <span className="animated-shining-word">{t.trust.title}</span>
           </h2>
           <p className="font-body-read text-base sm:text-lg text-slate-300 mt-4 leading-relaxed font-light">
             {t.trust.subtitle}
@@ -58,10 +58,10 @@ export const TrustAndPhilosophy: React.FC<TrustAndPhilosophyProps> = ({
           {commitments.map((item, idx) => (
             <div
               key={idx}
-              className="bg-[#0E1422]/95 p-6 rounded-2xl border border-[#D4AF37]/25 shadow-luxury-glow hover:shadow-luxury-card hover:border-[#D4AF37] transition-all duration-300 space-y-3 flex flex-col justify-between group hover:-translate-y-1 text-white"
+              className="bg-[#0E1422]/95 p-6 rounded-2xl border border-[#D4AF37]/25 shadow-luxury-glow hover:shadow-luxury-card hover:border-[#D4AF37] hover-card-float transition-all duration-300 space-y-3 flex flex-col justify-between group text-white"
             >
               <div className="space-y-3">
-                <div className="p-3 rounded-xl bg-[#131B2A] border border-[#D4AF37]/45 shadow-2xs w-fit text-amber-300">
+                <div className="p-3 rounded-xl bg-[#131B2A] border border-[#D4AF37]/45 shadow-2xs w-fit text-amber-300 group-hover:bg-[#1A2338] transition-colors">
                   {item.icon}
                 </div>
                 <h3 className="font-luxury-serif text-xl font-normal text-white group-hover:text-amber-300 transition-colors">

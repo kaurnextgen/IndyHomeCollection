@@ -86,7 +86,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
             <span>{t.contact.kicker}</span>
           </div>
           <h2 className="font-luxury-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white tracking-tight text-balance">
-            {t.contact.title}
+            <span className="animated-shining-word">{t.contact.title}</span>
           </h2>
           <p className="font-body-read text-base sm:text-lg text-slate-300 mt-4 leading-relaxed font-light">
             {t.contact.subtitle}
@@ -96,7 +96,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Column: Direct Contact Info Card */}
-          <div className="lg:col-span-5 bg-[#0E1422]/95 p-6 sm:p-8 rounded-3xl border border-[#D4AF37]/30 shadow-luxury-glow space-y-8 text-white">
+          <div className="lg:col-span-5 bg-[#0E1422]/95 p-6 sm:p-8 rounded-3xl border border-[#D4AF37]/30 shadow-luxury-glow hover-card-float space-y-8 text-white">
             
             <div className="space-y-3">
               <span className="text-[11px] font-luxury-sans uppercase tracking-widest text-slate-400">

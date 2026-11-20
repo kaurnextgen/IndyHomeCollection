@@ -342,7 +342,7 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
               <span>{t.videoGallery.kicker}</span>
             </div>
             <h2 className="font-luxury-serif text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-white text-balance">
-              {t.videoGallery.title}
+              <span className="animated-shining-word">{t.videoGallery.title}</span>
             </h2>
             <p className="font-body-read text-base text-slate-300 leading-relaxed font-light">
               {t.videoGallery.subtitle}
@@ -620,10 +620,10 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
                     // Smooth scroll to master player
                     document.getElementById('video-tours')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className={`bg-slate-900 rounded-xl border transition-all duration-300 overflow-hidden group cursor-pointer flex flex-col justify-between ${
+                  className={`bg-slate-900 rounded-xl border transition-all duration-300 overflow-hidden group cursor-pointer flex flex-col justify-between hover-card-float ${
                     isSelected
                       ? 'border-amber-500 ring-2 ring-amber-500/30 shadow-lg'
-                      : 'border-slate-800 hover:border-slate-700 hover:-translate-y-1'
+                      : 'border-slate-800 hover:border-[#D4AF37]/50'
                   }`}
                 >
                   <div>
@@ -633,12 +633,12 @@ export const VideoTourGallery: React.FC<VideoTourGalleryProps> = ({
                         src={tour.posterImage}
                         alt={tour.title}
                         referrerPolicy="no-referrer"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-110 hover-image-zoom transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
 
                       {/* Centered Play Button */}
-                      <div className="absolute inset-0 m-auto w-10 h-10 rounded-full bg-black/60 group-hover:bg-amber-500 text-white group-hover:text-slate-950 flex items-center justify-center transition-all">
+                      <div className="absolute inset-0 m-auto w-10 h-10 rounded-full bg-black/60 group-hover:bg-[#D4AF37] text-white group-hover:text-slate-950 flex items-center justify-center transition-all animate-pulse-subtle group-hover:scale-110">
                         <Play className="w-4 h-4 ml-0.5 fill-current" />
                       </div>
 

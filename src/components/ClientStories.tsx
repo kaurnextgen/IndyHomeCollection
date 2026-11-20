@@ -315,7 +315,7 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-3xl">
             <h2 className="font-luxury-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white tracking-tight text-balance">
-              {t.stories.title}
+              <span className="animated-shining-word">{t.stories.title}</span>
             </h2>
             <p className="font-body-read text-base text-slate-300 mt-3 leading-relaxed font-light">
               {t.stories.subtitle}
@@ -328,9 +328,9 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({
                 setReviewSubmitted(false);
                 setReviewModalOpen(true);
               }}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[#D4AF37]/45 bg-[#131A29] text-xs font-luxury-sans uppercase tracking-wider font-semibold text-amber-300 hover:bg-[#1B2538] transition-all cursor-pointer shadow-2xs"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[#D4AF37]/45 bg-[#131A29] text-xs font-luxury-sans uppercase tracking-wider font-semibold text-amber-300 hover:bg-[#1B2538] hover-card-float transition-all cursor-pointer shadow-2xs"
             >
-              <MessageSquarePlus className="w-3.5 h-3.5 text-amber-400" />
+              <MessageSquarePlus className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
               <span>{t.stories.shareExperience}</span>
             </button>
           </div>
@@ -340,28 +340,28 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({
         <div
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
-          className="relative bg-[#0E1422]/95 rounded-3xl border border-[#D4AF37]/25 shadow-luxury-glow overflow-hidden text-white"
+          className="relative bg-[#0E1422]/95 rounded-3xl border border-[#D4AF37]/25 shadow-luxury-glow hover-card-float overflow-hidden text-white"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
             
             {/* Left Photo Column */}
-            <div className="lg:col-span-5 relative min-h-[340px] lg:min-h-[460px] bg-slate-900 border-b lg:border-b-0 lg:border-r border-slate-800">
+            <div className="lg:col-span-5 relative min-h-[340px] lg:min-h-[460px] bg-slate-900 border-b lg:border-b-0 lg:border-r border-slate-800 overflow-hidden group">
               <img
                 src={current.image}
                 alt={current.clientName}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover transition-opacity duration-500"
+                className="w-full h-full object-cover transition-transform duration-700 hover-image-zoom group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none" />
               
               {/* Photo Overlay Badge */}
-              <div className="absolute bottom-4 left-4 right-4 text-white p-3.5 rounded-xl bg-slate-950/80 backdrop-blur-md border border-[#D4AF37]/30 shadow-luxury-glow space-y-1">
+              <div className="absolute bottom-4 left-4 right-4 text-white p-3.5 rounded-xl bg-slate-950/85 backdrop-blur-md border border-[#D4AF37]/40 shadow-luxury-glow space-y-1 animate-float-slow">
                 <div className="flex items-center justify-between text-xs">
                   <div className="flex items-center gap-1.5 font-luxury-sans uppercase tracking-wider font-semibold text-[#F6EBD7]">
-                    <MapPin className="w-3.5 h-3.5 text-[#D4AF37]" />
+                    <MapPin className="w-3.5 h-3.5 text-[#D4AF37] animate-bounce" />
                     <span>{current.location}</span>
                   </div>
-                  <span className="font-luxury-serif text-amber-300 text-sm">
+                  <span className="font-luxury-serif text-amber-300 text-sm animated-gold-glow-word">
                     {current.purchasePrice}
                   </span>
                 </div>
@@ -388,10 +388,10 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({
                   </span>
                 </div>
 
-                <Quote className="w-8 h-8 text-[#D4AF37]/50 -mb-2" />
+                <Quote className="w-8 h-8 text-[#D4AF37]/60 -mb-2 animate-pulse-subtle" />
 
                 <h3 className="font-luxury-serif text-2xl sm:text-3xl font-normal text-white leading-snug italic">
-                  "{current.headline}"
+                  "<span className="animated-shining-word">{current.headline}</span>"
                 </h3>
 
                 <p className="font-body-read text-sm sm:text-base text-slate-300 leading-relaxed font-light">
@@ -399,7 +399,7 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({
                 </p>
 
                 {/* Closing Statement Box */}
-                <div className="p-4 rounded-xl bg-[#131B2A] border border-[#D4AF37]/20 text-xs text-slate-200 space-y-1">
+                <div className="p-4 rounded-xl bg-[#131B2A] border border-[#D4AF37]/25 text-xs text-slate-200 space-y-1 hover-card-float transition-all">
                   <div className="flex items-center gap-1.5 font-bold text-amber-300">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                     <span>{t.stories.officialStatement}</span>
